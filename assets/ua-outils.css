@@ -795,3 +795,6 @@
 .ua-o .doc{background:transparent}
 .ua-o .tcard{height:100%}
 .ua-o-layer{position:relative;z-index:60}
+.ua-o .tg>.col.left.stick{top:112px}
+.bg-sea-25 .ua-o .tcard{background:#fff}
+.bg-sea-25 .ua-o .tcard .tv{background:#fff}

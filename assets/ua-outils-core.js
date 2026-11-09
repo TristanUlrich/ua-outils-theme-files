@@ -317,7 +317,7 @@
     requestAnimationFrame(function () {
       peek(tg);
       /* La colonne de gauche ne suit la lecture que si elle tient dans l'écran */
-      function fit() { left.classList.toggle('stick', left.offsetHeight < W.innerHeight - 48); }
+      function fit() { left.classList.toggle('stick', left.offsetHeight < W.innerHeight - (IN_SHOP ? 136 : 48)); }
       if ('ResizeObserver' in W) new ResizeObserver(fit).observe(left); W.addEventListener('resize', fit); fit();
       glueTree(tg);
       new MutationObserver(function () { glueTree(tg); }).observe(tg, { childList: true, characterData: true, subtree: true });

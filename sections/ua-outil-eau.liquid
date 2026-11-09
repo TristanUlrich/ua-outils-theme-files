@@ -1,0 +1,135 @@
+{%- comment -%}
+  UA, outil « Analyse d'eau » (09/11/2026). Fichier GÉNÉRÉ par scripts/build_shopify.js du projet ua-outils :
+  le modifier là-bas, pas ici. Gabarit : templates/page.outil-eau.json.
+  Bandeau : mêmes classes que sections/section-collection-hero.liquid. Bandes « en lien » : mêmes briques
+  que la fiche produit (card-product, slider, cartes d'articles de ua-related-articles).
+  Les prix et les stocks de l'outil sont relus en direct (/products/poignée.js) avant son affichage.
+{%- endcomment -%}
+<div class="hero_collection bg-stone-100 py-30 w-full relative overflow-hidden ua-o-hero">
+  <div class="container flex flex-col z-2 h-full relative">
+    <nav class="hidden s:flex items-center uppercase text-sm space-x-3 text-stone-50" role="navigation" aria-label="breadcrumbs">
+      <a href="{{ routes.root_url }}" class="hover:text-white">Accueil</a>
+      <span>{% render 'icon-separator' %}</span><a href="{% render 'ua-outil-url', slug: 'outils', view: 'outils' %}" class="hover:text-white">Outils</a>
+      <span>{% render 'icon-separator' %}</span><span aria-current="page">Lire une analyse d’eau</span>
+    </nav>
+    <div class="richtext pt-18 text-white ua-collection-hero">
+      <h1>Lire une analyse d’eau</h1>
+      <div class="font-semibold text-2xl pt-6 max-w-2xl ua-collection-hero-content"><p>À 25 °C et pH 8, <b>5 %</b> de l’ammonium mesuré est de l’ammoniac toxique, contre 0,4 % à pH 7 et 20 °C. Au-delà de <b>0,5 mg/L de nitrites</b>, les poissons sont en danger.</p></div>
+      
+    </div>
+  </div>
+  <div class="absolute top-0 left-0 w-full h-[400px] bg-stone-100 z-1">
+    <div class="absolute right-0 -top-[140px] w-[670px] text-sea-100">{% render 'icon-monogram' %}</div>
+  </div>
+  <div class="z-1 absolute -bottom-px left-0 w-full text-white transform">{% render 'icon-section-rounded-inverted' %}</div>
+</div>
+<style>
+  .ua-collection-hero h1{margin-bottom:0!important;padding-bottom:0!important}
+  .ua-collection-hero .ua-collection-hero-content{padding-top:.5rem!important;margin-top:0!important}
+  .ua-collection-hero .ua-collection-hero-content p{margin-top:0!important}
+</style>
+<div class="ua-o ua-outil-eau">
+<section class="ua-stage" aria-label="Calculateur"><div class="container"><div class="stage-card"><div id="tool" class="tool tool-diagnostic-analyse-eau"><p class="k">Exemple calculé</p><p class="mid">Pic de nitrites</p><p class="note">Aquaponie à 22 °C, pH 7, ammonium 0,25 mg/L, nitrites 0,5 mg/L : les bactéries qui transforment les nitrites sont en retard. Votre calcul remplace cet exemple.</p></div></div></div></section>
+<section class="doc"><div class="container"><div class="cols"><div class="method"><h2>Comment c’est <strong>calculé</strong></h2><p>Les tests d’ammonium mesurent ensemble deux formes de l’azote : l’ion ammonium, peu toxique, et l’ammoniac, toxique pour les branchies. La part d’ammoniac grimpe avec le pH et la température. L’outil la calcule avec l’équation d’Emerson.</p>
+<p class="formula">pKa = 0,09018 + 2 729,92 / (T + 273,15)
+part toxique = 1 / (1 + 10^(pKa − pH))
+NH3 (mg/L) = NH4 mesuré × 14/18 × part toxique × 17/14</p>
+<p>Le CO2 dissous se déduit du KH et du pH, tant que les carbonates sont le seul tampon de l’eau. La constante de l’acide carbonique dépend de la température (Harned et Davis).</p>
+<p class="formula">pK1 = 3 404,71 / T(K) + 0,032786 × T(K) − 14,8435
+CO2 (mg/L) = KH (°dH) × 0,3566 × 44,01 × 10^(pK1 − pH)</p>
+<p>L’oxygène à saturation suit Benson et Krause : 9,1 mg/L à 20 °C, 7,6 mg/L à 30 °C au niveau de la mer.</p>
+<table><thead><tr><th>Paramètre</th><th>Aquaponie</th><th>Bassin, eau froide</th></tr></thead><tbody>
+<tr><td>pH</td><td>6 à 7</td><td>6,5 à 8,5</td></tr><tr><td>Ammonium</td><td>sous 1 mg/L</td><td>sous 0,25 mg/L</td></tr>
+<tr><td>Nitrites</td><td>sous 0,25 mg/L, limite 1</td><td>sous 0,25 mg/L, limite 0,5</td></tr><tr><td>Nitrates</td><td>5 à 150 mg/L</td><td>au plus 30 mg/L</td></tr>
+<tr><td>KH</td><td>3,4 à 7,8 °dH</td><td>au moins 5 °dH</td></tr><tr><td>Oxygène</td><td>au moins 5 mg/L</td><td>5 à 8 mg/L</td></tr></tbody></table><h3>Dans quel ordre mesurer</h3><p>Mesurez d’abord la température et le pH : ils décident de la toxicité de l’ammoniac. Puis l’ammonium et les nitrites, les deux poisons du démarrage. Les nitrates et le KH disent ensuite si le système est équilibré à plus long terme.</p>
+<h3>Quand mesurer</h3><p>Le matin, avant de nourrir, au même endroit du bassin. Pendant le démarrage d’un système, tous les deux jours. Une fois stable, une fois par semaine suffit, et toujours après un changement brutal.</p></div><div class="side"><div class="faq"><h2>Questions <strong>fréquentes</strong></h2><details><summary>Quel taux de nitrites est dangereux ?</summary><p>Les fiches des tests situent le danger entre 0,5 et 1 mg/L selon l’espèce. En bassin, visez moins de 0,25 mg/L. La truite est plus sensible : la FAO la place sous 0,3 mg/L.</p></details><details><summary>Comment savoir si l’ammoniac est toxique ?</summary><p>Il faut le pH et la température en plus du test d’ammonium. À 0,5 mg/L d’ammonium, une eau à pH 8 et 25 °C contient 0,025 mg/L d’ammoniac, cinq fois plus qu’à pH 7,3.</p></details><details><summary>Quel pH en aquaponie ?</summary><p>Entre 6 et 7 : c’est le compromis de la FAO entre les poissons, les plantes et les bactéries. Au-dessus de 7, le fer devient difficile à absorber pour les plantes.</p></details><details><summary>Pourquoi mesurer le KH ?</summary><p>Le KH est la réserve qui empêche le pH de chuter. Sous 3 à 4 °dH, le pH peut s’effondrer en une nuit. En aquaponie, le bicarbonate de potassium relève le KH et apporte du potassium aux plantes.</p></details><details><summary>Mes nitrates sont à zéro en aquaponie, est-ce grave ?</summary><p>Sous 5 mg/L, les plantes manquent d’azote. La FAO conseille alors d’augmenter doucement la ration des poissons, si les autres valeurs sont bonnes.</p></details><details><summary>Bandelettes ou gouttes ?</summary><p>Les tests en gouttes lisent plus finement les faibles valeurs d’ammonium et de nitrites, celles qui comptent au démarrage. Les bandelettes vont vite pour un contrôle de routine.</p></details><details><summary>Mes résultats sont bons mais mes poissons vont mal, pourquoi ?</summary><p>Pensez à l’oxygène, surtout la nuit et par forte chaleur, et à la température. Si tout est bon, la cause peut être une maladie : isolez le poisson et observez.</p></details></div><h3 class="src-t">Sources</h3><ol class="src"><li><span class="st">Aqueous ammonia equilibrium calculations: effect of pH and temperature</span> <span class="by">Emerson et al., J. Fish. Res. Board Can. 32, 1975</span><span class="what">Part d’ammoniac toxique selon le pH et la température.</span></li><li><span class="st">The ionization constant of carbonic acid in water</span> <span class="by">Harned et Davis, J. Am. Chem. Soc. 65, 1943</span><span class="what">CO2 dissous déduit du pH et du KH.</span></li><li><a href="https://water.usgs.gov/water-resources/memos/documents/WQ.2011.03.pdf" target="_blank" rel="noopener">Technical Memorandum 2011.03, oxygène dissous<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">USGS, d’après Benson et Krause, 1980 et 1984</span><span class="what">Oxygène dissous à saturation selon la température.</span></li><li><a href="https://www.fao.org/3/i4021e/i4021e.pdf" target="_blank" rel="noopener">Small-scale aquaponic food production, tableau 7.1<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">Somerville et al., FAO, 2014</span><span class="what">Plages de température, ammoniac, nitrites et oxygène par espèce ; pH 6 à 7, nitrates 5 à 150 mg/L en aquaponie.</span></li><li><a href="https://www.univers-aquaponie.com/products/test-nitrite" target="_blank" rel="noopener">Test nitrite NO2<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">Fiche Univers Aquaponie, relevée le 09/11/2026</span><span class="what">Danger de 0,5 à 1 mg/L.</span></li><li><a href="https://www.univers-aquaponie.com/products/test-durete-carbonatee" target="_blank" rel="noopener">Test KH<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">Fiche Univers Aquaponie, relevée le 09/11/2026</span><span class="what">Jamais sous 5 °dKH.</span></li></ol></div></div></div></section>
+</div>
+<div class="text-sea-25 -mb-px mt-12 s:mt-24">{% render 'icon-section-rounded' %}</div>
+<div class="overflow-hidden bg-sea-25">
+  <div class="px-6 m:px-10 pt-8 pb-12 s:pt-12 s:pb-16">
+    <div class="flex justify-between items-center pb-10 s:pb-12"><div><h2 class="type-h3">Produits en lien</h2></div></div>
+    {%- assign ua_rel = 'pack-test-eau-aquaponie-analyses-essentielles-nh4-no2-ph-kh,mallette-danalyse-deau-6-en-1-pour-bassin-aquaponie,test-nitrite,test-ammonium,test-durete-carbonatee,test-oxygene,activateur-bacterien-easy-start,bicarbonate-de-potassium' | split: ',' -%}
+    {%- capture ua_cards -%}{%- for ua_h in ua_rel -%}{%- assign ua_p = all_products[ua_h] -%}{%- if ua_p != blank and ua_p.available -%}<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;">{% render 'card-product', card_product: ua_p, show_quick_add: true %}</div>{%- endif -%}{%- endfor -%}{%- endcapture -%}
+    {% render 'slider', content: ua_cards %}
+  </div>
+</div>
+<div class="overflow-hidden bg-sea-25">
+  <div class="px-6 m:px-10 pt-2 pb-12 s:pt-4 s:pb-16">
+    <div class="flex justify-between items-center pb-10 s:pb-12"><div><h2 class="type-h3">Outils en lien</h2></div></div>
+    {%- capture ua_tools -%}<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;"><div class="ua-o" style="height:100%"><a class="tcard" href="{% render 'ua-outil-url', slug: 'carences-plantes', view: 'outil-carences' %}" data-u="Plantes"><span class="tv"><img src="{{ 'ua-vignette-carences.jpg' | asset_url }}" alt="" loading="lazy" width="640" height="400"></span><span class="tb"><span class="tt">Carences des plantes</span><span class="td">Du symptôme à la dose de correcteur pour votre volume.</span></span><span class="tf"><span class="uni">Plantes</span><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></div></div><div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;"><div class="ua-o" style="height:100%"><a class="tcard" href="{% render 'ua-outil-url', slug: 'nourrir-poissons-bassin', view: 'outil-ration' %}" data-u="Bassin"><span class="tv"><img src="{{ 'ua-vignette-ration.jpg' | asset_url }}" alt="" loading="lazy" width="640" height="400"></span><span class="tb"><span class="tt">Ration selon la température</span><span class="td">Quoi donner, combien et à quel rythme, de 5 à 30 °C.</span></span><span class="tf"><span class="uni">Bassin</span><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></div></div><div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;"><div class="ua-o" style="height:100%"><a class="tcard" href="{% render 'ua-outil-url', slug: 'calculateur-aquaponie', view: 'outil-aquaponie' %}" data-u="Aquaponie"><span class="tv"><img src="{{ 'ua-vignette-aquaponie.jpg' | asset_url }}" alt="" loading="lazy" width="640" height="400"></span><span class="tb"><span class="tt">Dimensionner l’aquaponie</span><span class="td">Poissons, plantes, bassin, filtre et pompe, d’après la FAO.</span></span><span class="tf"><span class="uni">Aquaponie</span><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></div></div>{%- endcapture -%}
+    {% render 'slider', content: ua_tools, active_breakpoints: 'xxs xs' %}
+  </div>
+</div>
+<section id="ua-outil-art-eau">
+  <div class="overflow-hidden bg-sea-25">
+    <div class="px-6 m:px-10 pt-2 pb-12 s:pt-4 s:pb-16">
+      <div class="flex justify-between items-center pb-4"><div><h2 class="type-h3">{{ 'ua.articles.heading_html' | t }}</h2></div></div>
+      {%- capture ua_arts -%}{%- assign ua_a = articles['news/cycle-azote-aquaponie'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/comment-reguler-le-ph-dans-un-systeme-aquaponie'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/eau-trouble-en-aquaponie'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/erreurs-frequentes-en-aquaponie'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}{%- endcapture -%}
+      {% render 'slider', content: ua_arts, active_breakpoints: 'xxs xs s' %}
+    </div>
+  </div>
+</section>
+<style>
+#ua-outil-art-eau .ua-art-card{background:var(--aqua-white,#fff);height:100%}
+#ua-outil-art-eau .ua-art-media{aspect-ratio:4/3;overflow:hidden;background:var(--aqua-cream,#DEF1F0)}
+#ua-outil-art-eau .ua-art-img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1);transition:transform 1.2s var(--ua-ease-out,ease)}
+#ua-outil-art-eau .ua-art-card:hover .ua-art-img{transform:scale(1.05)}
+#ua-outil-art-eau .ua-art-title{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:break-word}
+#ua-outil-art-eau .ua-art-exc{color:var(--aqua-text-soft,#4A5464);font-size:.875rem;line-height:1.5}
+#ua-outil-art-eau .ua-art-exc p{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;margin:0}
+#ua-outil-art-eau .ua-art-rule{position:absolute;bottom:0;left:0;width:100%;height:1px;background:currentColor;transform-origin:right;transition:transform .3s var(--ua-ease-out,ease)}
+#ua-outil-art-eau .ua-art-card:hover .ua-art-rule{transform:scaleX(0);transform-origin:left}
+</style>
+{{ 'ua-outils.css' | asset_url | stylesheet_tag }}
+<script>window.UA_ROOT={{ routes.root_url | json }};window.UA_LINKS={"outils":"{% render 'ua-outil-url', slug: 'outils', view: 'outils' %}","calculateur-bache-bassin":"{% render 'ua-outil-url', slug: 'calculateur-bache-bassin', view: 'outil-bache' %}","calculateur-pompe-bassin":"{% render 'ua-outil-url', slug: 'calculateur-pompe-bassin', view: 'outil-pompe' %}","combien-de-poissons-bassin":"{% render 'ua-outil-url', slug: 'combien-de-poissons-bassin', view: 'outil-poissons' %}","nourrir-poissons-bassin":"{% render 'ua-outil-url', slug: 'nourrir-poissons-bassin', view: 'outil-ration' %}","diagnostic-analyse-eau":"{% render 'ua-outil-url', slug: 'diagnostic-analyse-eau', view: 'outil-eau' %}","quel-poisson-aquaponie":"{% render 'ua-outil-url', slug: 'quel-poisson-aquaponie', view: 'outil-quel-poisson' %}","calculateur-aquaponie":"{% render 'ua-outil-url', slug: 'calculateur-aquaponie', view: 'outil-aquaponie' %}","carences-plantes":"{% render 'ua-outil-url', slug: 'carences-plantes', view: 'outil-carences' %}","calendrier-semis":"{% render 'ua-outil-url', slug: 'calendrier-semis', view: 'outil-semis' %}"};window.UA_IMG={"poisson-carpe.jpg":"{{ 'ua-poisson-carpe.jpg' | asset_url }}","poisson-ide.jpg":"{{ 'ua-poisson-ide.jpg' | asset_url }}","poisson-koi.jpg":"{{ 'ua-poisson-koi.jpg' | asset_url }}","poisson-omble.jpg":"{{ 'ua-poisson-omble.jpg' | asset_url }}","poisson-perche.jpg":"{{ 'ua-poisson-perche.jpg' | asset_url }}","poisson-rouge.jpg":"{{ 'ua-poisson-rouge.jpg' | asset_url }}","poisson-shubunkin.jpg":"{{ 'ua-poisson-shubunkin.jpg' | asset_url }}","poisson-sterlet.jpg":"{{ 'ua-poisson-sterlet.jpg' | asset_url }}","poisson-tanche.jpg":"{{ 'ua-poisson-tanche.jpg' | asset_url }}","poisson-tilapia.jpg":"{{ 'ua-poisson-tilapia.jpg' | asset_url }}","poisson-truite.jpg":"{{ 'ua-poisson-truite.jpg' | asset_url }}"};</script>
+<script src="{{ 'ua-outil-data-eau.js' | asset_url }}" defer></script>
+<script src="{{ 'ua-outils-calc.js' | asset_url }}" defer></script>
+<script src="{{ 'ua-outils-core.js' | asset_url }}" defer></script>
+<script src="{{ 'ua-outil-eau.js' | asset_url }}" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Analyse d'eau","alternateName":"Lire une analyse d'eau","description":"Saisissez les résultats de vos tests d'eau : l'outil calcule l'ammoniac toxique, le CO2 et l'oxygène, repère les valeurs dangereuses et dit quoi faire, en aquaponie, en bassin ou en aquarium d'eau froide.","url":"https://www.univers-aquaponie.com/pages/diagnostic-analyse-eau","applicationCategory":"Diagnostic de qualité d'eau","operatingSystem":"Tous","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"inLanguage":"fr","featureList":["Ammoniac toxique selon pH et température","CO2 calculé à partir du KH et du pH","Oxygène à saturation","Diagnostic et actions","Historique sur l'appareil"],"dateModified":"2026-11-09","publisher":{"@type":"Organization","name":"Univers Aquaponie","url":"https://www.univers-aquaponie.com"},"citation":[{"@type":"CreativeWork","name":"Aqueous ammonia equilibrium calculations: effect of pH and temperature","author":"Emerson et al., J. Fish. Res. Board Can. 32, 1975"},{"@type":"CreativeWork","name":"The ionization constant of carbonic acid in water","author":"Harned et Davis, J. Am. Chem. Soc. 65, 1943"},{"@type":"CreativeWork","name":"Technical Memorandum 2011.03, oxygène dissous","author":"USGS, d'après Benson et Krause, 1980 et 1984","url":"https://water.usgs.gov/water-resources/memos/documents/WQ.2011.03.pdf"},{"@type":"CreativeWork","name":"Small-scale aquaponic food production, tableau 7.1","author":"Somerville et al., FAO, 2014","url":"https://www.fao.org/3/i4021e/i4021e.pdf"},{"@type":"CreativeWork","name":"Test nitrite NO2","author":"Fiche Univers Aquaponie, relevée le 09/11/2026","url":"https://www.univers-aquaponie.com/products/test-nitrite"},{"@type":"CreativeWork","name":"Test KH","author":"Fiche Univers Aquaponie, relevée le 09/11/2026","url":"https://www.univers-aquaponie.com/products/test-durete-carbonatee"}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.univers-aquaponie.com/"},{"@type":"ListItem","position":2,"name":"Outils","item":"https://www.univers-aquaponie.com/pages/outils"},{"@type":"ListItem","position":3,"name":"Lire une analyse d'eau","item":"https://www.univers-aquaponie.com/pages/diagnostic-analyse-eau"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quel taux de nitrites est dangereux ?","acceptedAnswer":{"@type":"Answer","text":"Les fiches des tests situent le danger entre 0,5 et 1 mg/L selon l'espèce. En bassin, visez moins de 0,25 mg/L. La truite est plus sensible : la FAO la place sous 0,3 mg/L."}},{"@type":"Question","name":"Comment savoir si l'ammoniac est toxique ?","acceptedAnswer":{"@type":"Answer","text":"Il faut le pH et la température en plus du test d'ammonium. À 0,5 mg/L d'ammonium, une eau à pH 8 et 25 °C contient 0,025 mg/L d'ammoniac, cinq fois plus qu'à pH 7,3."}},{"@type":"Question","name":"Quel pH en aquaponie ?","acceptedAnswer":{"@type":"Answer","text":"Entre 6 et 7 : c'est le compromis de la FAO entre les poissons, les plantes et les bactéries. Au-dessus de 7, le fer devient difficile à absorber pour les plantes."}},{"@type":"Question","name":"Pourquoi mesurer le KH ?","acceptedAnswer":{"@type":"Answer","text":"Le KH est la réserve qui empêche le pH de chuter. Sous 3 à 4 °dH, le pH peut s'effondrer en une nuit. En aquaponie, le bicarbonate de potassium relève le KH et apporte du potassium aux plantes."}},{"@type":"Question","name":"Mes nitrates sont à zéro en aquaponie, est-ce grave ?","acceptedAnswer":{"@type":"Answer","text":"Sous 5 mg/L, les plantes manquent d'azote. La FAO conseille alors d'augmenter doucement la ration des poissons, si les autres valeurs sont bonnes."}},{"@type":"Question","name":"Bandelettes ou gouttes ?","acceptedAnswer":{"@type":"Answer","text":"Les tests en gouttes lisent plus finement les faibles valeurs d'ammonium et de nitrites, celles qui comptent au démarrage. Les bandelettes vont vite pour un contrôle de routine."}},{"@type":"Question","name":"Mes résultats sont bons mais mes poissons vont mal, pourquoi ?","acceptedAnswer":{"@type":"Answer","text":"Pensez à l'oxygène, surtout la nuit et par forte chaleur, et à la température. Si tout est bon, la cause peut être une maladie : isolez le poisson et observez."}}]}]}</script>
+{% schema %}
+{"name":"UA, outil Analyse d'eau","tag":"section","class":"ua-outil","settings":[]}
+{% endschema %}

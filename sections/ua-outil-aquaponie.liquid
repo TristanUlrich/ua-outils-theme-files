@@ -1,0 +1,129 @@
+{%- comment -%}
+  UA, outil « Dimensionner l'aquaponie » (09/11/2026). Fichier GÉNÉRÉ par scripts/build_shopify.js du projet ua-outils :
+  le modifier là-bas, pas ici. Gabarit : templates/page.outil-aquaponie.json.
+  Bandeau : mêmes classes que sections/section-collection-hero.liquid. Bandes « en lien » : mêmes briques
+  que la fiche produit (card-product, slider, cartes d'articles de ua-related-articles).
+  Les prix et les stocks de l'outil sont relus en direct (/products/poignée.js) avant son affichage.
+{%- endcomment -%}
+<div class="hero_collection bg-stone-100 py-30 w-full relative overflow-hidden ua-o-hero">
+  <div class="container flex flex-col z-2 h-full relative">
+    <nav class="hidden s:flex items-center uppercase text-sm space-x-3 text-stone-50" role="navigation" aria-label="breadcrumbs">
+      <a href="{{ routes.root_url }}" class="hover:text-white">Accueil</a>
+      <span>{% render 'icon-separator' %}</span><a href="{% render 'ua-outil-url', slug: 'outils', view: 'outils' %}" class="hover:text-white">Outils</a>
+      <span>{% render 'icon-separator' %}</span><span aria-current="page">Dimensionner un système aquaponique</span>
+    </nav>
+    <div class="richtext pt-18 text-white ua-collection-hero">
+      <h1>Dimensionner un système aquaponique</h1>
+      <div class="font-semibold text-2xl pt-6 max-w-2xl ua-collection-hero-content"><p>La FAO compte <b>40 à 50 g d’aliment par jour et par m²</b> de salades, et au plus <b>20 kg de poissons pour 1 000 litres</b> d’eau quand on débute.</p></div>
+      
+    </div>
+  </div>
+  <div class="absolute top-0 left-0 w-full h-[400px] bg-stone-100 z-1">
+    <div class="absolute right-0 -top-[140px] w-[670px] text-sea-100">{% render 'icon-monogram' %}</div>
+  </div>
+  <div class="z-1 absolute -bottom-px left-0 w-full text-white transform">{% render 'icon-section-rounded-inverted' %}</div>
+</div>
+<style>
+  .ua-collection-hero h1{margin-bottom:0!important;padding-bottom:0!important}
+  .ua-collection-hero .ua-collection-hero-content{padding-top:.5rem!important;margin-top:0!important}
+  .ua-collection-hero .ua-collection-hero-content p{margin-top:0!important}
+</style>
+<div class="ua-o ua-outil-aquaponie">
+<section class="ua-stage" aria-label="Calculateur"><div class="container"><div class="stage-card"><div id="tool" class="tool tool-calculateur-aquaponie"><p class="k">Exemple calculé</p><p class="mid">4 m² → 200 g/j → 10 à 20 kg → 1 000 L</p><p class="note">Salades sur lit de substrat, ratio de 50 g d'aliment par m² et par jour. Votre calcul remplace cet exemple.</p></div></div></div></section>
+<section class="doc"><div class="container"><div class="cols"><div class="method"><h2>Comment c’est <strong>calculé</strong></h2><p>En aquaponie, tout part de l’aliment. Les poissons le mangent et rejettent l’azote que les plantes absorbent. La FAO relie donc la surface de culture à la quantité d’aliment distribuée chaque jour : c’est le ratio d’alimentation.</p>
+<p class="formula">Aliment (g/j) = surface (m²) × ratio (40 à 50 g/m²/j pour les feuilles, 50 à 80 pour les fruits)
+Poissons (kg) = aliment / (10 × taux de ration en %)   taux de 1 à 2 % du poids par jour
+Bassin (L) = poissons (kg) / 20 × 1 000   au plus 20 kg pour 1 000 L</p>
+<p>Le biofiltre demande environ 1 litre de gravier volcanique, ou un demi-litre de billes plastiques, par gramme d’aliment quotidien. Le décanteur fait 10 à 20 % du volume du bassin. La pompe suit la table 8.1 de la FAO. On compte 20 à 25 plants de feuilles par m², 4 à 8 plants fruitiers.</p>
+<p>En eau froide, la FAO conseille un biofiltre plus grand : les bactéries travaillent plus lentement.</p><h3>Les trois techniques</h3><p>Le lit de substrat, rempli de billes d’argile, porte les plantes et sert aussi de filtre : c’est la technique la plus simple pour débuter. Le NFT fait couler un mince filet d’eau dans des gouttières, idéal pour les salades. Les radeaux flottent sur l’eau, avec les racines dedans. Ces deux dernières techniques demandent un décanteur et un biofiltre séparés.</p>
+<h3>Démarrer doucement</h3><p>Un système neuf n’a pas encore ses bactéries. Commencez avec moins de poissons que le maximum calculé, et augmentez à mesure que les tests d’ammonium et de nitrites restent bas.</p></div><div class="side"><div class="faq"><h2>Questions <strong>fréquentes</strong></h2><details><summary>Combien de poissons pour combien de plantes en aquaponie ?</summary><p>La FAO raisonne en aliment : 40 à 50 g par jour et par m² de légumes-feuilles. Pour 4 m² de salades, 200 g d’aliment par jour nourrissent 10 à 20 kg de poissons.</p></details><details><summary>Quel volume de bassin pour l’aquaponie ?</summary><p>Au plus 20 kg de poissons pour 1 000 litres quand on débute. Avec 10 à 20 kg de poissons, prévoyez un bassin de 1 000 litres.</p></details><details><summary>Quelle taille de biofiltre ?</summary><p>Environ 1 litre de gravier volcanique par gramme d’aliment quotidien, ou un demi-litre de billes plastiques à grande surface. Pour 200 g d’aliment par jour : 200 litres de gravier ou 100 litres de billes.</p></details><details><summary>Faut-il un décanteur ?</summary><p>Oui en NFT et en culture sur radeaux, qui se bouchent vite. En lit de substrat, il devient nécessaire au-delà de 20 kg de poissons pour 1 000 litres. Comptez 10 à 20 % du volume du bassin.</p></details><details><summary>Combien de salades par m² ?</summary><p>20 à 25 plants de légumes-feuilles par m², et 4 à 8 plants fruitiers comme les tomates.</p></details><details><summary>Lit de substrat, NFT ou radeaux ?</summary><p>Le lit de substrat pour débuter : il filtre lui-même l’eau. Le NFT et les radeaux conviennent aux salades et aux aromates, avec un décanteur et un biofiltre séparés.</p></details><details><summary>Combien de temps pour démarrer un système ?</summary><p>Le temps que les bactéries s’installent, souvent plusieurs semaines. Suivez l’ammonium et les nitrites : quand ils restent bas, le système est prêt.</p></details></div><h3 class="src-t">Sources</h3><ol class="src"><li><a href="https://www.fao.org/3/i4021e/i4021e.pdf" target="_blank" rel="noopener">Small-scale aquaponic food production, chapitre 8<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">Somerville et al., FAO, 2014</span><span class="what">Ratios plantes, aliment, poissons et biofiltre, table 8.1 des pompes, 1 à 2 % du poids vif par jour en grossissement.</span></li><li><a href="https://www.univers-aquaponie.com/products/kit-daquaponie-la-geraldine" target="_blank" rel="noopener">Kit d'aquaponie Géraldine<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">Fiche Univers Aquaponie, relevée le 09/11/2026</span><span class="what">Bassin de 380 L, potager de 1 ou 2 m².</span></li><li><a href="https://www.univers-aquaponie.com/products/kit-daquaponie-enterre" target="_blank" rel="noopener">Kit d'aquaponie enterré<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">Fiche Univers Aquaponie, relevée le 09/11/2026</span><span class="what">500 ou 1 000 L.</span></li></ol></div></div></div></section>
+</div>
+<div class="text-sea-25 -mb-px mt-12 s:mt-24">{% render 'icon-section-rounded' %}</div>
+<div class="overflow-hidden bg-sea-25">
+  <div class="px-6 m:px-10 pt-8 pb-12 s:pt-12 s:pb-16">
+    <div class="flex justify-between items-center pb-10 s:pb-12"><div><h2 class="type-h3">Produits en lien</h2></div></div>
+    {%- assign ua_rel = 'kit-daquaponie-la-geraldine,kit-daquaponie-naps,kit-daquaponie-enterre,kit-aquaponique-autonome-myfarm,kit-aquaponie-glaez-symbiose,billes-argile-grorox-8-20-terra-aquatica,bioballs,pack-test-eau-aquaponie-analyses-essentielles-nh4-no2-ph-kh' | split: ',' -%}
+    {%- capture ua_cards -%}{%- for ua_h in ua_rel -%}{%- assign ua_p = all_products[ua_h] -%}{%- if ua_p != blank and ua_p.available -%}<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;">{% render 'card-product', card_product: ua_p, show_quick_add: true %}</div>{%- endif -%}{%- endfor -%}{%- endcapture -%}
+    {% render 'slider', content: ua_cards %}
+  </div>
+</div>
+<div class="overflow-hidden bg-sea-25">
+  <div class="px-6 m:px-10 pt-2 pb-12 s:pt-4 s:pb-16">
+    <div class="flex justify-between items-center pb-10 s:pb-12"><div><h2 class="type-h3">Outils en lien</h2></div></div>
+    {%- capture ua_tools -%}<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;"><div class="ua-o" style="height:100%"><a class="tcard" href="{% render 'ua-outil-url', slug: 'quel-poisson-aquaponie', view: 'outil-quel-poisson' %}" data-u="Aquaponie"><span class="tv"><img src="{{ 'ua-vignette-quel-poisson.jpg' | asset_url }}" alt="" loading="lazy" width="640" height="400"></span><span class="tb"><span class="tt">Quel poisson choisir</span><span class="td">Les espèces que votre eau supporte, été comme hiver.</span></span><span class="tf"><span class="uni">Aquaponie</span><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></div></div><div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;"><div class="ua-o" style="height:100%"><a class="tcard" href="{% render 'ua-outil-url', slug: 'calculateur-pompe-bassin', view: 'outil-pompe' %}" data-u="Bassin"><span class="tv"><img src="{{ 'ua-vignette-pompe.jpg' | asset_url }}" alt="" loading="lazy" width="640" height="400"></span><span class="tb"><span class="tt">Calculateur de pompe</span><span class="td">Le vrai débit de chaque pompe à votre hauteur, et son coût par an.</span></span><span class="tf"><span class="uni">Bassin</span><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></div></div><div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;"><div class="ua-o" style="height:100%"><a class="tcard" href="{% render 'ua-outil-url', slug: 'diagnostic-analyse-eau', view: 'outil-eau' %}" data-u="Aquaponie"><span class="tv"><img src="{{ 'ua-vignette-eau.jpg' | asset_url }}" alt="" loading="lazy" width="640" height="400"></span><span class="tb"><span class="tt">Analyse d’eau</span><span class="td">Ammoniac toxique, CO2, oxygène, et ce qu’il faut faire.</span></span><span class="tf"><span class="uni">Aquaponie</span><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></div></div>{%- endcapture -%}
+    {% render 'slider', content: ua_tools, active_breakpoints: 'xxs xs' %}
+  </div>
+</div>
+<section id="ua-outil-art-aquaponie">
+  <div class="overflow-hidden bg-sea-25">
+    <div class="px-6 m:px-10 pt-2 pb-12 s:pt-4 s:pb-16">
+      <div class="flex justify-between items-center pb-4"><div><h2 class="type-h3">{{ 'ua.articles.heading_html' | t }}</h2></div></div>
+      {%- capture ua_arts -%}{%- assign ua_a = articles['news/creer-systeme-aquaponique-maison'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/comment-bien-demarrer-un-systeme-aquaponique'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/les-kits-d-aquaponie-d-exterieur'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/quel-substrat-choisir-en-aquaponie'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}{%- endcapture -%}
+      {% render 'slider', content: ua_arts, active_breakpoints: 'xxs xs s' %}
+    </div>
+  </div>
+</section>
+<style>
+#ua-outil-art-aquaponie .ua-art-card{background:var(--aqua-white,#fff);height:100%}
+#ua-outil-art-aquaponie .ua-art-media{aspect-ratio:4/3;overflow:hidden;background:var(--aqua-cream,#DEF1F0)}
+#ua-outil-art-aquaponie .ua-art-img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1);transition:transform 1.2s var(--ua-ease-out,ease)}
+#ua-outil-art-aquaponie .ua-art-card:hover .ua-art-img{transform:scale(1.05)}
+#ua-outil-art-aquaponie .ua-art-title{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:break-word}
+#ua-outil-art-aquaponie .ua-art-exc{color:var(--aqua-text-soft,#4A5464);font-size:.875rem;line-height:1.5}
+#ua-outil-art-aquaponie .ua-art-exc p{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;margin:0}
+#ua-outil-art-aquaponie .ua-art-rule{position:absolute;bottom:0;left:0;width:100%;height:1px;background:currentColor;transform-origin:right;transition:transform .3s var(--ua-ease-out,ease)}
+#ua-outil-art-aquaponie .ua-art-card:hover .ua-art-rule{transform:scaleX(0);transform-origin:left}
+</style>
+{{ 'ua-outils.css' | asset_url | stylesheet_tag }}
+<script>window.UA_ROOT={{ routes.root_url | json }};window.UA_LINKS={"outils":"{% render 'ua-outil-url', slug: 'outils', view: 'outils' %}","calculateur-bache-bassin":"{% render 'ua-outil-url', slug: 'calculateur-bache-bassin', view: 'outil-bache' %}","calculateur-pompe-bassin":"{% render 'ua-outil-url', slug: 'calculateur-pompe-bassin', view: 'outil-pompe' %}","combien-de-poissons-bassin":"{% render 'ua-outil-url', slug: 'combien-de-poissons-bassin', view: 'outil-poissons' %}","nourrir-poissons-bassin":"{% render 'ua-outil-url', slug: 'nourrir-poissons-bassin', view: 'outil-ration' %}","diagnostic-analyse-eau":"{% render 'ua-outil-url', slug: 'diagnostic-analyse-eau', view: 'outil-eau' %}","quel-poisson-aquaponie":"{% render 'ua-outil-url', slug: 'quel-poisson-aquaponie', view: 'outil-quel-poisson' %}","calculateur-aquaponie":"{% render 'ua-outil-url', slug: 'calculateur-aquaponie', view: 'outil-aquaponie' %}","carences-plantes":"{% render 'ua-outil-url', slug: 'carences-plantes', view: 'outil-carences' %}","calendrier-semis":"{% render 'ua-outil-url', slug: 'calendrier-semis', view: 'outil-semis' %}"};window.UA_IMG={"poisson-carpe.jpg":"{{ 'ua-poisson-carpe.jpg' | asset_url }}","poisson-ide.jpg":"{{ 'ua-poisson-ide.jpg' | asset_url }}","poisson-koi.jpg":"{{ 'ua-poisson-koi.jpg' | asset_url }}","poisson-omble.jpg":"{{ 'ua-poisson-omble.jpg' | asset_url }}","poisson-perche.jpg":"{{ 'ua-poisson-perche.jpg' | asset_url }}","poisson-rouge.jpg":"{{ 'ua-poisson-rouge.jpg' | asset_url }}","poisson-shubunkin.jpg":"{{ 'ua-poisson-shubunkin.jpg' | asset_url }}","poisson-sterlet.jpg":"{{ 'ua-poisson-sterlet.jpg' | asset_url }}","poisson-tanche.jpg":"{{ 'ua-poisson-tanche.jpg' | asset_url }}","poisson-tilapia.jpg":"{{ 'ua-poisson-tilapia.jpg' | asset_url }}","poisson-truite.jpg":"{{ 'ua-poisson-truite.jpg' | asset_url }}"};</script>
+<script src="{{ 'ua-outil-data-aquaponie.js' | asset_url }}" defer></script>
+<script src="{{ 'ua-outils-calc.js' | asset_url }}" defer></script>
+<script src="{{ 'ua-outils-core.js' | asset_url }}" defer></script>
+<script src="{{ 'ua-outil-aquaponie.js' | asset_url }}" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Dimensionner l'aquaponie","alternateName":"Dimensionner un système aquaponique","description":"Combien de poissons pour combien de plantes ? Aliment par jour, poids de poissons, volume du bassin, biofiltre, décanteur et pompe d'un système aquaponique, dans les deux sens, d'après la FAO.","url":"https://www.univers-aquaponie.com/pages/calculateur-aquaponie","applicationCategory":"Calculateur d'aquaponie","operatingSystem":"Tous","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"inLanguage":"fr","featureList":["Calcul depuis les cultures ou depuis le bassin","Aliment par jour","Poids de poissons","Volume du bassin","Biofiltre, décanteur et pompe","Kit le plus proche"],"dateModified":"2026-11-09","publisher":{"@type":"Organization","name":"Univers Aquaponie","url":"https://www.univers-aquaponie.com"},"citation":[{"@type":"CreativeWork","name":"Small-scale aquaponic food production, chapitre 8","author":"Somerville et al., FAO, 2014","url":"https://www.fao.org/3/i4021e/i4021e.pdf"},{"@type":"CreativeWork","name":"Kit d'aquaponie Géraldine","author":"Fiche Univers Aquaponie, relevée le 09/11/2026","url":"https://www.univers-aquaponie.com/products/kit-daquaponie-la-geraldine"},{"@type":"CreativeWork","name":"Kit d'aquaponie enterré","author":"Fiche Univers Aquaponie, relevée le 09/11/2026","url":"https://www.univers-aquaponie.com/products/kit-daquaponie-enterre"}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.univers-aquaponie.com/"},{"@type":"ListItem","position":2,"name":"Outils","item":"https://www.univers-aquaponie.com/pages/outils"},{"@type":"ListItem","position":3,"name":"Dimensionner un système aquaponique","item":"https://www.univers-aquaponie.com/pages/calculateur-aquaponie"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Combien de poissons pour combien de plantes en aquaponie ?","acceptedAnswer":{"@type":"Answer","text":"La FAO raisonne en aliment : 40 à 50 g par jour et par m² de légumes-feuilles. Pour 4 m² de salades, 200 g d'aliment par jour nourrissent 10 à 20 kg de poissons."}},{"@type":"Question","name":"Quel volume de bassin pour l'aquaponie ?","acceptedAnswer":{"@type":"Answer","text":"Au plus 20 kg de poissons pour 1 000 litres quand on débute. Avec 10 à 20 kg de poissons, prévoyez un bassin de 1 000 litres."}},{"@type":"Question","name":"Quelle taille de biofiltre ?","acceptedAnswer":{"@type":"Answer","text":"Environ 1 litre de gravier volcanique par gramme d'aliment quotidien, ou un demi-litre de billes plastiques à grande surface. Pour 200 g d'aliment par jour : 200 litres de gravier ou 100 litres de billes."}},{"@type":"Question","name":"Faut-il un décanteur ?","acceptedAnswer":{"@type":"Answer","text":"Oui en NFT et en culture sur radeaux, qui se bouchent vite. En lit de substrat, il devient nécessaire au-delà de 20 kg de poissons pour 1 000 litres. Comptez 10 à 20 % du volume du bassin."}},{"@type":"Question","name":"Combien de salades par m² ?","acceptedAnswer":{"@type":"Answer","text":"20 à 25 plants de légumes-feuilles par m², et 4 à 8 plants fruitiers comme les tomates."}},{"@type":"Question","name":"Lit de substrat, NFT ou radeaux ?","acceptedAnswer":{"@type":"Answer","text":"Le lit de substrat pour débuter : il filtre lui-même l'eau. Le NFT et les radeaux conviennent aux salades et aux aromates, avec un décanteur et un biofiltre séparés."}},{"@type":"Question","name":"Combien de temps pour démarrer un système ?","acceptedAnswer":{"@type":"Answer","text":"Le temps que les bactéries s'installent, souvent plusieurs semaines. Suivez l'ammonium et les nitrites : quand ils restent bas, le système est prêt."}}]}]}</script>
+{% schema %}
+{"name":"UA, outil Dimensionner l'aquaponie","tag":"section","class":"ua-outil","settings":[]}
+{% endschema %}

@@ -1,0 +1,130 @@
+{%- comment -%}
+  UA, outil « Calculateur de pompe » (09/11/2026). Fichier GÉNÉRÉ par scripts/build_shopify.js du projet ua-outils :
+  le modifier là-bas, pas ici. Gabarit : templates/page.outil-pompe.json.
+  Bandeau : mêmes classes que sections/section-collection-hero.liquid. Bandes « en lien » : mêmes briques
+  que la fiche produit (card-product, slider, cartes d'articles de ua-related-articles).
+  Les prix et les stocks de l'outil sont relus en direct (/products/poignée.js) avant son affichage.
+{%- endcomment -%}
+<div class="hero_collection bg-stone-100 py-30 w-full relative overflow-hidden ua-o-hero">
+  <div class="container flex flex-col z-2 h-full relative">
+    <nav class="hidden s:flex items-center uppercase text-sm space-x-3 text-stone-50" role="navigation" aria-label="breadcrumbs">
+      <a href="{{ routes.root_url }}" class="hover:text-white">Accueil</a>
+      <span>{% render 'icon-separator' %}</span><a href="{% render 'ua-outil-url', slug: 'outils', view: 'outils' %}" class="hover:text-white">Outils</a>
+      <span>{% render 'icon-separator' %}</span><span aria-current="page">Pompe de bassin et d’aquaponie</span>
+    </nav>
+    <div class="richtext pt-18 text-white ua-collection-hero">
+      <h1>Pompe de bassin et d’aquaponie</h1>
+      <div class="font-semibold text-2xl pt-6 max-w-2xl ua-collection-hero-content"><p>En aquaponie, la FAO conseille <b>2 000 L/h pour 1 000 litres</b>. Dans un bassin d’ornement, tout le volume doit passer dans le filtre <b>en deux heures</b>, en une heure avec des koïs.</p></div>
+      
+    </div>
+  </div>
+  <div class="absolute top-0 left-0 w-full h-[400px] bg-stone-100 z-1">
+    <div class="absolute right-0 -top-[140px] w-[670px] text-sea-100">{% render 'icon-monogram' %}</div>
+  </div>
+  <div class="z-1 absolute -bottom-px left-0 w-full text-white transform">{% render 'icon-section-rounded-inverted' %}</div>
+</div>
+<style>
+  .ua-collection-hero h1{margin-bottom:0!important;padding-bottom:0!important}
+  .ua-collection-hero .ua-collection-hero-content{padding-top:.5rem!important;margin-top:0!important}
+  .ua-collection-hero .ua-collection-hero-content p{margin-top:0!important}
+</style>
+<div class="ua-o ua-outil-pompe">
+<section class="ua-stage" aria-label="Calculateur"><div class="container"><div class="stage-card"><div id="tool" class="tool tool-calculateur-pompe-bassin"><p class="k">Exemple calculé</p><p class="mid">2 000 L/h à 1,4 m</p><p class="note">Aquaponie, 1 000 litres, 1 m de hauteur, 5 m de tuyau de 25 mm, 2 coudes. Votre calcul remplace cet exemple.</p></div></div></div></section>
+<section class="doc"><div class="container"><div class="cols"><div class="method"><h2>Comment c’est <strong>calculé</strong></h2><p><strong>Le débit visé</strong> dépend de l’usage. En aquaponie, la table 8.1 de la FAO associe un débit à chaque volume de bassin : 800 L/h pour 200 L, 1 200 L/h pour 500 L, 2 000 L/h pour 1 000 L, 3 200 L/h pour 2 000 L, 4 500 L/h pour 3 000 L. L’outil interpole entre deux lignes. Pour un bassin d’ornement, le repère courant est de brasser tout le volume en deux heures, et en une heure avec des koïs.</p>
+<p><strong>La hauteur réelle</strong> ajoute à la hauteur à monter les pertes dans le tuyau, calculées par la formule de Hazen-Williams. Chaque coude compte comme 0,5 m de tuyau jusqu’au diamètre 32 mm, 1 m au-delà.</p>
+<p class="formula">Pertes (m) = 10,67 × L × Q^1,852 / (C^1,852 × D^4,8704)
+Q en m³/s, D en m, C = 140 pour un tuyau lisse, 120 pour un tuyau annelé
+Hauteur réelle = hauteur à monter + pertes</p>
+<p><strong>Le point de fonctionnement</strong> est l’endroit où la courbe de la pompe croise celle de votre circuit : c’est le débit que vous obtiendrez vraiment. Faute de courbe publiée pour chaque modèle, l’outil trace une droite entre le débit maximal et la hauteur maximale annoncés. Une pompe réelle débite en général un peu plus : l’estimation est prudente.</p>
+<p class="formula">Consommation (kWh/an) = puissance (W) × heures par jour × 365 / 1 000</p><h3>Lire la courbe</h3><p>Chaque trait fin est une pompe vendue : à gauche, sa hauteur maximale, où elle ne débite plus rien ; à droite, son débit maximal, mesuré sans hauteur. Le trait épais est votre circuit : il monte avec le débit, parce que l’eau frotte plus dans le tuyau quand elle va vite. La pompe donnera le débit du point où les deux se croisent.</p>
+<h3>Le tuyau compte autant que la pompe</h3><p>Les pertes dans le tuyau varient presque comme la puissance cinq du diamètre. Passer au diamètre supérieur coûte quelques euros et peut éviter d’acheter une pompe plus grosse, qui consommera plus chaque année.</p></div><div class="side"><div class="faq"><h2>Questions <strong>fréquentes</strong></h2><details><summary>Quel débit de pompe pour un bassin avec poissons ?</summary><p>Faites passer tout le volume dans le filtre au moins une fois toutes les deux heures, et une fois par heure avec des koïs. Un bassin de 6 000 litres demande donc 3 000 L/h, ou 6 000 L/h avec des koïs, mesurés à la hauteur réelle.</p></details><details><summary>Quel débit de pompe en aquaponie ?</summary><p>La FAO donne 2 000 L/h pour un bassin de 1 000 litres, 1 200 L/h pour 500 litres et 3 200 L/h pour 2 000 litres.</p></details><details><summary>Pourquoi ma pompe débite-t-elle moins que sur la boîte ?</summary><p>Le débit annoncé est mesuré sans aucune hauteur. Dès que l’eau doit monter et traverser un tuyau, il baisse. Une pompe annoncée à 3 000 L/h et 2,5 m ne donne plus que 1 800 L/h environ à 1 m.</p></details><details><summary>Quel diamètre de tuyau choisir ?</summary><p>Le plus gros que la sortie de la pompe accepte. Dans 10 m de tuyau à 3 000 L/h, passer de 25 à 32 mm fait tomber les pertes de 1,4 m à 0,4 m.</p></details><details><summary>Combien consomme une pompe de bassin ?</summary><p>Une pompe de 40 W qui tourne jour et nuit consomme 350 kWh par an, soit 70 € environ au tarif réglementé d’août 2026.</p></details><details><summary>Une pompe solaire suffit-elle ?</summary><p>Pour un petit bassin seulement. La pompe solaire vendue donne 300 L/h au maximum : de quoi brasser environ 600 litres en deux heures, sans hauteur ni tuyau long.</p></details><details><summary>Faut-il prendre une pompe plus puissante par sécurité ?</summary><p>Une marge de 20 à 50 % au-dessus du débit visé suffit. Au-delà, la pompe consomme plus et peut dépasser le débit que supportent un filtre ou un stérilisateur UV-C.</p></details></div><h3 class="src-t">Sources</h3><ol class="src"><li><a href="https://www.fao.org/3/i4021e/i4021e.pdf" target="_blank" rel="noopener">Small-scale aquaponic food production, chapitre 8<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">Somerville et al., FAO, 2014</span><span class="what">Ratios plantes, aliment, poissons et biofiltre, table 8.1 des pompes, 1 à 2 % du poids vif par jour en grossissement.</span></li><li><span class="st">Hydraulic Tables</span> <span class="by">Williams et Hazen, Wiley, 1905</span><span class="what">Formule de Hazen-Williams, ici en unités SI.</span></li><li><a href="https://www.gartenjournal.net/teichpumpe-berechnen" target="_blank" rel="noopener">Teichpumpe berechnen<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">gartenjournal.net</span><span class="what">Brasser le volume du bassin en deux heures.</span></li><li><a href="https://selectra.info/energie/electricite/prix/trv" target="_blank" rel="noopener">Tarif réglementé de l'électricité<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">selectra.info, 1er août 2026</span><span class="what">0,2001 € TTC le kWh, option Base.</span></li><li><span class="st">Débits, hauteurs et puissances des pompes</span> <span class="by">Fiches Univers Aquaponie et notices Sicce, EHEIM, Newa, JBL</span><span class="what">Relevés le 18/10/2026.</span></li></ol></div></div></div></section>
+</div>
+<div class="text-sea-25 -mb-px mt-12 s:mt-24">{% render 'icon-section-rounded' %}</div>
+<div class="overflow-hidden bg-sea-25">
+  <div class="px-6 m:px-10 pt-8 pb-12 s:pt-12 s:pb-16">
+    <div class="flex justify-between items-center pb-10 s:pb-12"><div><h2 class="type-h3">Produits en lien</h2></div></div>
+    {%- assign ua_rel = 'pompe-bassin-flow-3200-15500-lh,fontaine-bassin-jardin,pompe-eau-reglable-eheim-compacton,pompe-eau-immergee-syncra-silent-sicce,pompe-eau-sicce-syncra-adv-aquaponie-bassin-5500-10000-lh,pompe-eau-newa-jet-aquarium-aquaponie-400-6000-lh,pompe-bassin-sicce-eko-power-filtre-cascade,pompe-eau-solaire-batterie-300-lh-terra-aquatica' | split: ',' -%}
+    {%- capture ua_cards -%}{%- for ua_h in ua_rel -%}{%- assign ua_p = all_products[ua_h] -%}{%- if ua_p != blank and ua_p.available -%}<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;">{% render 'card-product', card_product: ua_p, show_quick_add: true %}</div>{%- endif -%}{%- endfor -%}{%- endcapture -%}
+    {% render 'slider', content: ua_cards %}
+  </div>
+</div>
+<div class="overflow-hidden bg-sea-25">
+  <div class="px-6 m:px-10 pt-2 pb-12 s:pt-4 s:pb-16">
+    <div class="flex justify-between items-center pb-10 s:pb-12"><div><h2 class="type-h3">Outils en lien</h2></div></div>
+    {%- capture ua_tools -%}<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;"><div class="ua-o" style="height:100%"><a class="tcard" href="{% render 'ua-outil-url', slug: 'calculateur-bache-bassin', view: 'outil-bache' %}" data-u="Bassin"><span class="tv"><img src="{{ 'ua-vignette-bache.jpg' | asset_url }}" alt="" loading="lazy" width="640" height="400"></span><span class="tb"><span class="tt">Calculateur de bâche</span><span class="td">Taille de bâche, feutre et litres, avec la bâche en stock qui couvre.</span></span><span class="tf"><span class="uni">Bassin</span><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></div></div><div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;"><div class="ua-o" style="height:100%"><a class="tcard" href="{% render 'ua-outil-url', slug: 'combien-de-poissons-bassin', view: 'outil-poissons' %}" data-u="Bassin"><span class="tv"><img src="{{ 'ua-vignette-poissons.jpg' | asset_url }}" alt="" loading="lazy" width="640" height="400"></span><span class="tb"><span class="tt">Combien de poissons</span><span class="td">La charge de votre bassin, la place qui reste, et l’UV-C qui suit.</span></span><span class="tf"><span class="uni">Bassin</span><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></div></div><div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;"><div class="ua-o" style="height:100%"><a class="tcard" href="{% render 'ua-outil-url', slug: 'calculateur-aquaponie', view: 'outil-aquaponie' %}" data-u="Aquaponie"><span class="tv"><img src="{{ 'ua-vignette-aquaponie.jpg' | asset_url }}" alt="" loading="lazy" width="640" height="400"></span><span class="tb"><span class="tt">Dimensionner l’aquaponie</span><span class="td">Poissons, plantes, bassin, filtre et pompe, d’après la FAO.</span></span><span class="tf"><span class="uni">Aquaponie</span><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></div></div>{%- endcapture -%}
+    {% render 'slider', content: ua_tools, active_breakpoints: 'xxs xs' %}
+  </div>
+</div>
+<section id="ua-outil-art-pompe">
+  <div class="overflow-hidden bg-sea-25">
+    <div class="px-6 m:px-10 pt-2 pb-12 s:pt-4 s:pb-16">
+      <div class="flex justify-between items-center pb-4"><div><h2 class="type-h3">{{ 'ua.articles.heading_html' | t }}</h2></div></div>
+      {%- capture ua_arts -%}{%- assign ua_a = articles['news/creer-systeme-aquaponique-maison'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/sterilisateur-uv-bassin-jardin-clarificateur-uvc-puissance-guide'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/eau-verte-bassin-5-solutions-efficaces-sans-produit-chimique'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/les-kits-d-aquaponie-d-exterieur'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}{%- endcapture -%}
+      {% render 'slider', content: ua_arts, active_breakpoints: 'xxs xs s' %}
+    </div>
+  </div>
+</section>
+<style>
+#ua-outil-art-pompe .ua-art-card{background:var(--aqua-white,#fff);height:100%}
+#ua-outil-art-pompe .ua-art-media{aspect-ratio:4/3;overflow:hidden;background:var(--aqua-cream,#DEF1F0)}
+#ua-outil-art-pompe .ua-art-img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1);transition:transform 1.2s var(--ua-ease-out,ease)}
+#ua-outil-art-pompe .ua-art-card:hover .ua-art-img{transform:scale(1.05)}
+#ua-outil-art-pompe .ua-art-title{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:break-word}
+#ua-outil-art-pompe .ua-art-exc{color:var(--aqua-text-soft,#4A5464);font-size:.875rem;line-height:1.5}
+#ua-outil-art-pompe .ua-art-exc p{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;margin:0}
+#ua-outil-art-pompe .ua-art-rule{position:absolute;bottom:0;left:0;width:100%;height:1px;background:currentColor;transform-origin:right;transition:transform .3s var(--ua-ease-out,ease)}
+#ua-outil-art-pompe .ua-art-card:hover .ua-art-rule{transform:scaleX(0);transform-origin:left}
+</style>
+{{ 'ua-outils.css' | asset_url | stylesheet_tag }}
+<script>window.UA_ROOT={{ routes.root_url | json }};window.UA_LINKS={"outils":"{% render 'ua-outil-url', slug: 'outils', view: 'outils' %}","calculateur-bache-bassin":"{% render 'ua-outil-url', slug: 'calculateur-bache-bassin', view: 'outil-bache' %}","calculateur-pompe-bassin":"{% render 'ua-outil-url', slug: 'calculateur-pompe-bassin', view: 'outil-pompe' %}","combien-de-poissons-bassin":"{% render 'ua-outil-url', slug: 'combien-de-poissons-bassin', view: 'outil-poissons' %}","nourrir-poissons-bassin":"{% render 'ua-outil-url', slug: 'nourrir-poissons-bassin', view: 'outil-ration' %}","diagnostic-analyse-eau":"{% render 'ua-outil-url', slug: 'diagnostic-analyse-eau', view: 'outil-eau' %}","quel-poisson-aquaponie":"{% render 'ua-outil-url', slug: 'quel-poisson-aquaponie', view: 'outil-quel-poisson' %}","calculateur-aquaponie":"{% render 'ua-outil-url', slug: 'calculateur-aquaponie', view: 'outil-aquaponie' %}","carences-plantes":"{% render 'ua-outil-url', slug: 'carences-plantes', view: 'outil-carences' %}","calendrier-semis":"{% render 'ua-outil-url', slug: 'calendrier-semis', view: 'outil-semis' %}"};window.UA_IMG={"poisson-carpe.jpg":"{{ 'ua-poisson-carpe.jpg' | asset_url }}","poisson-ide.jpg":"{{ 'ua-poisson-ide.jpg' | asset_url }}","poisson-koi.jpg":"{{ 'ua-poisson-koi.jpg' | asset_url }}","poisson-omble.jpg":"{{ 'ua-poisson-omble.jpg' | asset_url }}","poisson-perche.jpg":"{{ 'ua-poisson-perche.jpg' | asset_url }}","poisson-rouge.jpg":"{{ 'ua-poisson-rouge.jpg' | asset_url }}","poisson-shubunkin.jpg":"{{ 'ua-poisson-shubunkin.jpg' | asset_url }}","poisson-sterlet.jpg":"{{ 'ua-poisson-sterlet.jpg' | asset_url }}","poisson-tanche.jpg":"{{ 'ua-poisson-tanche.jpg' | asset_url }}","poisson-tilapia.jpg":"{{ 'ua-poisson-tilapia.jpg' | asset_url }}","poisson-truite.jpg":"{{ 'ua-poisson-truite.jpg' | asset_url }}"};</script>
+<script src="{{ 'ua-outil-data-pompe.js' | asset_url }}" defer></script>
+<script src="{{ 'ua-outils-calc.js' | asset_url }}" defer></script>
+<script src="{{ 'ua-outils-core.js' | asset_url }}" defer></script>
+<script src="{{ 'ua-outil-pompe.js' | asset_url }}" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Calculateur de pompe","alternateName":"Pompe de bassin et d'aquaponie","description":"Débit conseillé, hauteur manométrique totale et point de fonctionnement réel de chaque pompe vendue, avec le coût électrique annuel. Formules et sources affichées.","url":"https://www.univers-aquaponie.com/pages/calculateur-pompe-bassin","applicationCategory":"Calculateur de pompe","operatingSystem":"Tous","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"inLanguage":"fr","featureList":["Débit conseillé selon l'usage","Hauteur manométrique totale","Point de fonctionnement de chaque pompe","Coût électrique annuel","Effet du diamètre de tuyau"],"dateModified":"2026-11-09","publisher":{"@type":"Organization","name":"Univers Aquaponie","url":"https://www.univers-aquaponie.com"},"citation":[{"@type":"CreativeWork","name":"Small-scale aquaponic food production, chapitre 8","author":"Somerville et al., FAO, 2014","url":"https://www.fao.org/3/i4021e/i4021e.pdf"},{"@type":"CreativeWork","name":"Hydraulic Tables","author":"Williams et Hazen, Wiley, 1905"},{"@type":"CreativeWork","name":"Teichpumpe berechnen","author":"gartenjournal.net","url":"https://www.gartenjournal.net/teichpumpe-berechnen"},{"@type":"CreativeWork","name":"Tarif réglementé de l'électricité","author":"selectra.info, 1er août 2026","url":"https://selectra.info/energie/electricite/prix/trv"},{"@type":"CreativeWork","name":"Débits, hauteurs et puissances des pompes","author":"Fiches Univers Aquaponie et notices Sicce, EHEIM, Newa, JBL"}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.univers-aquaponie.com/"},{"@type":"ListItem","position":2,"name":"Outils","item":"https://www.univers-aquaponie.com/pages/outils"},{"@type":"ListItem","position":3,"name":"Pompe de bassin et d'aquaponie","item":"https://www.univers-aquaponie.com/pages/calculateur-pompe-bassin"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quel débit de pompe pour un bassin avec poissons ?","acceptedAnswer":{"@type":"Answer","text":"Faites passer tout le volume dans le filtre au moins une fois toutes les deux heures, et une fois par heure avec des koïs. Un bassin de 6 000 litres demande donc 3 000 L/h, ou 6 000 L/h avec des koïs, mesurés à la hauteur réelle."}},{"@type":"Question","name":"Quel débit de pompe en aquaponie ?","acceptedAnswer":{"@type":"Answer","text":"La FAO donne 2 000 L/h pour un bassin de 1 000 litres, 1 200 L/h pour 500 litres et 3 200 L/h pour 2 000 litres."}},{"@type":"Question","name":"Pourquoi ma pompe débite-t-elle moins que sur la boîte ?","acceptedAnswer":{"@type":"Answer","text":"Le débit annoncé est mesuré sans aucune hauteur. Dès que l'eau doit monter et traverser un tuyau, il baisse. Une pompe annoncée à 3 000 L/h et 2,5 m ne donne plus que 1 800 L/h environ à 1 m."}},{"@type":"Question","name":"Quel diamètre de tuyau choisir ?","acceptedAnswer":{"@type":"Answer","text":"Le plus gros que la sortie de la pompe accepte. Dans 10 m de tuyau à 3 000 L/h, passer de 25 à 32 mm fait tomber les pertes de 1,4 m à 0,4 m."}},{"@type":"Question","name":"Combien consomme une pompe de bassin ?","acceptedAnswer":{"@type":"Answer","text":"Une pompe de 40 W qui tourne jour et nuit consomme 350 kWh par an, soit 70 € environ au tarif réglementé d'août 2026."}},{"@type":"Question","name":"Une pompe solaire suffit-elle ?","acceptedAnswer":{"@type":"Answer","text":"Pour un petit bassin seulement. La pompe solaire vendue donne 300 L/h au maximum : de quoi brasser environ 600 litres en deux heures, sans hauteur ni tuyau long."}},{"@type":"Question","name":"Faut-il prendre une pompe plus puissante par sécurité ?","acceptedAnswer":{"@type":"Answer","text":"Une marge de 20 à 50 % au-dessus du débit visé suffit. Au-delà, la pompe consomme plus et peut dépasser le débit que supportent un filtre ou un stérilisateur UV-C."}}]}]}</script>
+{% schema %}
+{"name":"UA, outil Calculateur de pompe","tag":"section","class":"ua-outil","settings":[]}
+{% endschema %}

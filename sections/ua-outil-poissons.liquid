@@ -1,0 +1,129 @@
+{%- comment -%}
+  UA, outil « Combien de poissons » (09/11/2026). Fichier GÉNÉRÉ par scripts/build_shopify.js du projet ua-outils :
+  le modifier là-bas, pas ici. Gabarit : templates/page.outil-poissons.json.
+  Bandeau : mêmes classes que sections/section-collection-hero.liquid. Bandes « en lien » : mêmes briques
+  que la fiche produit (card-product, slider, cartes d'articles de ua-related-articles).
+  Les prix et les stocks de l'outil sont relus en direct (/products/poignée.js) avant son affichage.
+{%- endcomment -%}
+<div class="hero_collection bg-stone-100 py-30 w-full relative overflow-hidden ua-o-hero">
+  <div class="container flex flex-col z-2 h-full relative">
+    <nav class="hidden s:flex items-center uppercase text-sm space-x-3 text-stone-50" role="navigation" aria-label="breadcrumbs">
+      <a href="{{ routes.root_url }}" class="hover:text-white">Accueil</a>
+      <span>{% render 'icon-separator' %}</span><a href="{% render 'ua-outil-url', slug: 'outils', view: 'outils' %}" class="hover:text-white">Outils</a>
+      <span>{% render 'icon-separator' %}</span><span aria-current="page">Combien de poissons dans mon bassin</span>
+    </nav>
+    <div class="richtext pt-18 text-white ua-collection-hero">
+      <h1>Combien de poissons dans mon bassin</h1>
+      <div class="font-semibold text-2xl pt-6 max-w-2xl ua-collection-hero-content"><p>Comptez <b>52 litres par centimètre</b> de koï adulte et <b>30 litres par centimètre</b> de poisson rouge. Avec des koïs, un stérilisateur UV-C traite environ <b>quatre fois moins</b> d’eau.</p></div>
+      
+    </div>
+  </div>
+  <div class="absolute top-0 left-0 w-full h-[400px] bg-stone-100 z-1">
+    <div class="absolute right-0 -top-[140px] w-[670px] text-sea-100">{% render 'icon-monogram' %}</div>
+  </div>
+  <div class="z-1 absolute -bottom-px left-0 w-full text-white transform">{% render 'icon-section-rounded-inverted' %}</div>
+</div>
+<style>
+  .ua-collection-hero h1{margin-bottom:0!important;padding-bottom:0!important}
+  .ua-collection-hero .ua-collection-hero-content{padding-top:.5rem!important;margin-top:0!important}
+  .ua-collection-hero .ua-collection-hero-content p{margin-top:0!important}
+</style>
+<div class="ua-o ua-outil-poissons">
+<section class="ua-stage" aria-label="Calculateur"><div class="container"><div class="stage-card"><div id="tool" class="tool tool-combien-de-poissons-bassin"><p class="k">Exemple calculé</p><p class="mid">82 %</p><p class="note">Bassin de 6 000 litres avec 2 koïs de 30 cm et 5 poissons rouges de 12 cm. Votre calcul remplace cet exemple.</p></div></div></div></section>
+<section class="doc"><div class="container"><div class="cols"><div class="method"><h2>Comment c’est <strong>calculé</strong></h2><p>Chaque poisson occupe un volume d’eau proportionnel à sa longueur adulte. L’outil additionne ces volumes et les compare à celui du bassin : c’est la charge.</p>
+<p class="formula">Koï : 52 litres par centimètre de poisson
+Poisson rouge, shubunkin, comète : 30 litres par centimètre
+Surface : 0,037 m² par centimètre, et au moins 0,93 m² par koï</p>
+<p>Ces repères viennent d’un spécialiste britannique du bassin, qui les donne en gallons et en pouces (35 gallons par pouce de koï, 20 pour le poisson rouge). Ce sont des règles empiriques, pour un bassin filtré. Si vous indiquez la surface d’eau, la règle la plus stricte des deux s’applique.</p>
+<p>Le stérilisateur UV-C se choisit sur les volumes annoncés par chaque fabricant, qui distinguent un bassin sans poissons, avec poissons et avec koïs. Les koïs divisent par quatre environ le volume traité par une lampe. L’outil retient le plus petit modèle qui couvre votre bassin.</p><h3>Pourquoi la taille adulte</h3><p>Un poisson rouge acheté à 5 cm en mesure souvent 15 à 20 l’année suivante en bassin. Le calcul se fait donc sur la taille que les poissons auront, pas sur celle du jour de l’achat. Sinon le bassin se retrouve surpeuplé en deux saisons.</p>
+<h3>La surface compte aussi</h3><p>L’oxygène entre dans l’eau par la surface. Un bassin profond et étroit contient beaucoup de litres mais respire mal. Indiquez la surface d’eau pour que l’outil applique la règle la plus stricte des deux.</p></div><div class="side"><div class="faq"><h2>Questions <strong>fréquentes</strong></h2><details><summary>Combien de poissons rouges dans un bassin de 1 000 litres ?</summary><p>Environ 33 centimètres de poissons rouges, soit 2 poissons de 15 cm, d’après le repère de 30 litres par centimètre. Un poisson rouge grandit vite en bassin : comptez avec sa taille adulte.</p></details><details><summary>Combien de koïs par litre ?</summary><p>Le repère est de 52 litres par centimètre de koï adulte. Une koï de 50 cm demande donc 2 600 litres. Un bassin de 6 000 litres en accueille donc deux.</p></details><details><summary>Quelle puissance d’UV-C pour mon bassin ?</summary><p>Elle dépend du volume et des poissons. Chez EHEIM, un modèle de 9 W traite 10 000 litres sans poissons, 5 000 avec des poissons et 2 500 avec des koïs.</p></details><details><summary>Pourquoi mon bassin devient-il vert ?</summary><p>Des algues microscopiques flottent dans l’eau. Elles profitent du soleil et des nutriments que laissent les poissons. Un UV-C bien dimensionné les fait floculer, le filtre les retient, et un bassin moins chargé en poissons en nourrit moins.</p></details><details><summary>Le surpeuplement est-il grave ?</summary><p>Un bassin trop chargé accumule ammoniac et nitrites, manque d’oxygène en été et verdit plus vite. Mesurez l’eau et renforcez la filtration, ou donnez de l’espace aux poissons.</p></details><details><summary>Faut-il compter la taille actuelle ou adulte ?</summary><p>Adulte. Les repères de 52 et 30 litres par centimètre s’appliquent à la taille que les poissons atteindront dans votre bassin.</p></details><details><summary>Un filtre permet-il de mettre plus de poissons ?</summary><p>Les repères supposent déjà un bassin filtré. Le filtre et l’UV-C gardent l’eau saine à cette charge, ils ne l’augmentent pas.</p></details></div><h3 class="src-t">Sources</h3><ol class="src"><li><a href="https://www.allpondsolutions.co.uk/fishkeeping-advice/how-man-fish-can-your-pond-hold.html" target="_blank" rel="noopener">How Many Fish Can Your Pond Hold?<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">AllPondSolutions, 22/08/2023</span><span class="what">35 gallons par pouce de koï, 20 pour le poisson rouge.</span></li><li><a href="https://www.univers-aquaponie.com/products/sterilisateur-uv-clear" target="_blank" rel="noopener">Stérilisateur EHEIM Clear UVC<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">Fiche Univers Aquaponie, relevée le 09/11/2026</span><span class="what">Litres traités sans poissons, avec poissons, avec koïs.</span></li><li><a href="https://www.univers-aquaponie.com/products/pompe-filtre-looppro-eheim-l-h" target="_blank" rel="noopener">Filtre EHEIM LOOPpro<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">Fiche Univers Aquaponie, relevée le 09/11/2026</span></li><li><a href="https://www.univers-aquaponie.com/products/filtre-bassin-immerge-uv-c-sicce-filtrapond" target="_blank" rel="noopener">Filtre Sicce Filtrapond<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">Fiche Univers Aquaponie, relevée le 09/11/2026</span></li></ol><p class="credits">Photos : koï, Bernard Spragg (CC0) ; poisson rouge, mattbuck (CC BY-SA 3.0) ; shubunkin, Michelle Jo (CC BY-SA 3.0) ; ide, mattbuck (CC BY-SA 3.0) ; tanche, Karelj (domaine public) ; sterlet, MartinThoma (CC0). Wikimedia Commons.</p></div></div></div></section>
+</div>
+<div class="text-sea-25 -mb-px mt-12 s:mt-24">{% render 'icon-section-rounded' %}</div>
+<div class="overflow-hidden bg-sea-25">
+  <div class="px-6 m:px-10 pt-8 pb-12 s:pt-12 s:pb-16">
+    <div class="flex justify-between items-center pb-10 s:pb-12"><div><h2 class="type-h3">Produits en lien</h2></div></div>
+    {%- assign ua_rel = 'sterilisateur-uv-clear,pompe-filtre-loop-eheim,pompe-filtre-looppro-eheim-l-h,filtre-bassin-immerge-uv-c-sicce-filtrapond,nourriture-koi-poissons-rouges-jbl-propond-all-seasons,aliment-all-seasons,mallette-danalyse-deau-6-en-1-pour-bassin-aquaponie,pompe-air-hailea-aco-80-3600-lh' | split: ',' -%}
+    {%- capture ua_cards -%}{%- for ua_h in ua_rel -%}{%- assign ua_p = all_products[ua_h] -%}{%- if ua_p != blank and ua_p.available -%}<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;">{% render 'card-product', card_product: ua_p, show_quick_add: true %}</div>{%- endif -%}{%- endfor -%}{%- endcapture -%}
+    {% render 'slider', content: ua_cards %}
+  </div>
+</div>
+<div class="overflow-hidden bg-sea-25">
+  <div class="px-6 m:px-10 pt-2 pb-12 s:pt-4 s:pb-16">
+    <div class="flex justify-between items-center pb-10 s:pb-12"><div><h2 class="type-h3">Outils en lien</h2></div></div>
+    {%- capture ua_tools -%}<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;"><div class="ua-o" style="height:100%"><a class="tcard" href="{% render 'ua-outil-url', slug: 'nourrir-poissons-bassin', view: 'outil-ration' %}" data-u="Bassin"><span class="tv"><img src="{{ 'ua-vignette-ration.jpg' | asset_url }}" alt="" loading="lazy" width="640" height="400"></span><span class="tb"><span class="tt">Ration selon la température</span><span class="td">Quoi donner, combien et à quel rythme, de 5 à 30 °C.</span></span><span class="tf"><span class="uni">Bassin</span><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></div></div><div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;"><div class="ua-o" style="height:100%"><a class="tcard" href="{% render 'ua-outil-url', slug: 'calculateur-pompe-bassin', view: 'outil-pompe' %}" data-u="Bassin"><span class="tv"><img src="{{ 'ua-vignette-pompe.jpg' | asset_url }}" alt="" loading="lazy" width="640" height="400"></span><span class="tb"><span class="tt">Calculateur de pompe</span><span class="td">Le vrai débit de chaque pompe à votre hauteur, et son coût par an.</span></span><span class="tf"><span class="uni">Bassin</span><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></div></div><div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;"><div class="ua-o" style="height:100%"><a class="tcard" href="{% render 'ua-outil-url', slug: 'diagnostic-analyse-eau', view: 'outil-eau' %}" data-u="Aquaponie"><span class="tv"><img src="{{ 'ua-vignette-eau.jpg' | asset_url }}" alt="" loading="lazy" width="640" height="400"></span><span class="tb"><span class="tt">Analyse d’eau</span><span class="td">Ammoniac toxique, CO2, oxygène, et ce qu’il faut faire.</span></span><span class="tf"><span class="uni">Aquaponie</span><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></div></div>{%- endcapture -%}
+    {% render 'slider', content: ua_tools, active_breakpoints: 'xxs xs' %}
+  </div>
+</div>
+<section id="ua-outil-art-poissons">
+  <div class="overflow-hidden bg-sea-25">
+    <div class="px-6 m:px-10 pt-2 pb-12 s:pt-4 s:pb-16">
+      <div class="flex justify-between items-center pb-4"><div><h2 class="type-h3">{{ 'ua.articles.heading_html' | t }}</h2></div></div>
+      {%- capture ua_arts -%}{%- assign ua_a = articles['news/eau-verte-bassin-5-solutions-efficaces-sans-produit-chimique'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/sterilisateur-uv-bassin-jardin-clarificateur-uvc-puissance-guide'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/carpe-koi-en-aquaponie-guide-complet-pour-reussir'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/esturgeon-bassin-de-jardin-especes-oxygenation-nourriture-guide'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}{%- endcapture -%}
+      {% render 'slider', content: ua_arts, active_breakpoints: 'xxs xs s' %}
+    </div>
+  </div>
+</section>
+<style>
+#ua-outil-art-poissons .ua-art-card{background:var(--aqua-white,#fff);height:100%}
+#ua-outil-art-poissons .ua-art-media{aspect-ratio:4/3;overflow:hidden;background:var(--aqua-cream,#DEF1F0)}
+#ua-outil-art-poissons .ua-art-img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1);transition:transform 1.2s var(--ua-ease-out,ease)}
+#ua-outil-art-poissons .ua-art-card:hover .ua-art-img{transform:scale(1.05)}
+#ua-outil-art-poissons .ua-art-title{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:break-word}
+#ua-outil-art-poissons .ua-art-exc{color:var(--aqua-text-soft,#4A5464);font-size:.875rem;line-height:1.5}
+#ua-outil-art-poissons .ua-art-exc p{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;margin:0}
+#ua-outil-art-poissons .ua-art-rule{position:absolute;bottom:0;left:0;width:100%;height:1px;background:currentColor;transform-origin:right;transition:transform .3s var(--ua-ease-out,ease)}
+#ua-outil-art-poissons .ua-art-card:hover .ua-art-rule{transform:scaleX(0);transform-origin:left}
+</style>
+{{ 'ua-outils.css' | asset_url | stylesheet_tag }}
+<script>window.UA_ROOT={{ routes.root_url | json }};window.UA_LINKS={"outils":"{% render 'ua-outil-url', slug: 'outils', view: 'outils' %}","calculateur-bache-bassin":"{% render 'ua-outil-url', slug: 'calculateur-bache-bassin', view: 'outil-bache' %}","calculateur-pompe-bassin":"{% render 'ua-outil-url', slug: 'calculateur-pompe-bassin', view: 'outil-pompe' %}","combien-de-poissons-bassin":"{% render 'ua-outil-url', slug: 'combien-de-poissons-bassin', view: 'outil-poissons' %}","nourrir-poissons-bassin":"{% render 'ua-outil-url', slug: 'nourrir-poissons-bassin', view: 'outil-ration' %}","diagnostic-analyse-eau":"{% render 'ua-outil-url', slug: 'diagnostic-analyse-eau', view: 'outil-eau' %}","quel-poisson-aquaponie":"{% render 'ua-outil-url', slug: 'quel-poisson-aquaponie', view: 'outil-quel-poisson' %}","calculateur-aquaponie":"{% render 'ua-outil-url', slug: 'calculateur-aquaponie', view: 'outil-aquaponie' %}","carences-plantes":"{% render 'ua-outil-url', slug: 'carences-plantes', view: 'outil-carences' %}","calendrier-semis":"{% render 'ua-outil-url', slug: 'calendrier-semis', view: 'outil-semis' %}"};window.UA_IMG={"poisson-carpe.jpg":"{{ 'ua-poisson-carpe.jpg' | asset_url }}","poisson-ide.jpg":"{{ 'ua-poisson-ide.jpg' | asset_url }}","poisson-koi.jpg":"{{ 'ua-poisson-koi.jpg' | asset_url }}","poisson-omble.jpg":"{{ 'ua-poisson-omble.jpg' | asset_url }}","poisson-perche.jpg":"{{ 'ua-poisson-perche.jpg' | asset_url }}","poisson-rouge.jpg":"{{ 'ua-poisson-rouge.jpg' | asset_url }}","poisson-shubunkin.jpg":"{{ 'ua-poisson-shubunkin.jpg' | asset_url }}","poisson-sterlet.jpg":"{{ 'ua-poisson-sterlet.jpg' | asset_url }}","poisson-tanche.jpg":"{{ 'ua-poisson-tanche.jpg' | asset_url }}","poisson-tilapia.jpg":"{{ 'ua-poisson-tilapia.jpg' | asset_url }}","poisson-truite.jpg":"{{ 'ua-poisson-truite.jpg' | asset_url }}"};</script>
+<script src="{{ 'ua-outil-data-poissons.js' | asset_url }}" defer></script>
+<script src="{{ 'ua-outils-calc.js' | asset_url }}" defer></script>
+<script src="{{ 'ua-outils-core.js' | asset_url }}" defer></script>
+<script src="{{ 'ua-outil-poissons.js' | asset_url }}" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Combien de poissons","alternateName":"Combien de poissons dans mon bassin","description":"Calculez la charge de votre bassin en koïs et poissons rouges, la place qui reste, puis le stérilisateur UV-C et le filtre adaptés au volume et aux poissons.","url":"https://www.univers-aquaponie.com/pages/combien-de-poissons-bassin","applicationCategory":"Calculateur de bassin","operatingSystem":"Tous","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"inLanguage":"fr","featureList":["Charge du bassin","Place restante par espèce","Stérilisateur UV-C adapté","Filtre adapté","Lien partageable"],"dateModified":"2026-11-09","publisher":{"@type":"Organization","name":"Univers Aquaponie","url":"https://www.univers-aquaponie.com"},"citation":[{"@type":"CreativeWork","name":"How Many Fish Can Your Pond Hold?","author":"AllPondSolutions, 22/08/2023","url":"https://www.allpondsolutions.co.uk/fishkeeping-advice/how-man-fish-can-your-pond-hold.html"},{"@type":"CreativeWork","name":"Stérilisateur EHEIM Clear UVC","author":"Fiche Univers Aquaponie, relevée le 09/11/2026","url":"https://www.univers-aquaponie.com/products/sterilisateur-uv-clear"},{"@type":"CreativeWork","name":"Filtre EHEIM LOOPpro","author":"Fiche Univers Aquaponie, relevée le 09/11/2026","url":"https://www.univers-aquaponie.com/products/pompe-filtre-looppro-eheim-l-h"},{"@type":"CreativeWork","name":"Filtre Sicce Filtrapond","author":"Fiche Univers Aquaponie, relevée le 09/11/2026","url":"https://www.univers-aquaponie.com/products/filtre-bassin-immerge-uv-c-sicce-filtrapond"}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.univers-aquaponie.com/"},{"@type":"ListItem","position":2,"name":"Outils","item":"https://www.univers-aquaponie.com/pages/outils"},{"@type":"ListItem","position":3,"name":"Combien de poissons dans mon bassin","item":"https://www.univers-aquaponie.com/pages/combien-de-poissons-bassin"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Combien de poissons rouges dans un bassin de 1 000 litres ?","acceptedAnswer":{"@type":"Answer","text":"Environ 33 centimètres de poissons rouges, soit 2 poissons de 15 cm, d'après le repère de 30 litres par centimètre. Un poisson rouge grandit vite en bassin : comptez avec sa taille adulte."}},{"@type":"Question","name":"Combien de koïs par litre ?","acceptedAnswer":{"@type":"Answer","text":"Le repère est de 52 litres par centimètre de koï adulte. Une koï de 50 cm demande donc 2 600 litres. Un bassin de 6 000 litres en accueille donc deux."}},{"@type":"Question","name":"Quelle puissance d'UV-C pour mon bassin ?","acceptedAnswer":{"@type":"Answer","text":"Elle dépend du volume et des poissons. Chez EHEIM, un modèle de 9 W traite 10 000 litres sans poissons, 5 000 avec des poissons et 2 500 avec des koïs."}},{"@type":"Question","name":"Pourquoi mon bassin devient-il vert ?","acceptedAnswer":{"@type":"Answer","text":"Des algues microscopiques flottent dans l'eau. Elles profitent du soleil et des nutriments que laissent les poissons. Un UV-C bien dimensionné les fait floculer, le filtre les retient, et un bassin moins chargé en poissons en nourrit moins."}},{"@type":"Question","name":"Le surpeuplement est-il grave ?","acceptedAnswer":{"@type":"Answer","text":"Un bassin trop chargé accumule ammoniac et nitrites, manque d'oxygène en été et verdit plus vite. Mesurez l'eau et renforcez la filtration, ou donnez de l'espace aux poissons."}},{"@type":"Question","name":"Faut-il compter la taille actuelle ou adulte ?","acceptedAnswer":{"@type":"Answer","text":"Adulte. Les repères de 52 et 30 litres par centimètre s'appliquent à la taille que les poissons atteindront dans votre bassin."}},{"@type":"Question","name":"Un filtre permet-il de mettre plus de poissons ?","acceptedAnswer":{"@type":"Answer","text":"Les repères supposent déjà un bassin filtré. Le filtre et l'UV-C gardent l'eau saine à cette charge, ils ne l'augmentent pas."}}]}]}</script>
+{% schema %}
+{"name":"UA, outil Combien de poissons","tag":"section","class":"ua-outil","settings":[]}
+{% endschema %}

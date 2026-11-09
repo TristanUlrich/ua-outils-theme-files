@@ -1,0 +1,155 @@
+{%- comment -%}
+  UA, outil « Quel poisson choisir » (09/11/2026). Fichier GÉNÉRÉ par scripts/build_shopify.js du projet ua-outils :
+  le modifier là-bas, pas ici. Gabarit : templates/page.outil-quel-poisson.json.
+  Bandeau : mêmes classes que sections/section-collection-hero.liquid. Bandes « en lien » : mêmes briques
+  que la fiche produit (card-product, slider, cartes d'articles de ua-related-articles).
+  Les prix et les stocks de l'outil sont relus en direct (/products/poignée.js) avant son affichage.
+{%- endcomment -%}
+<div class="hero_collection bg-stone-100 py-30 w-full relative overflow-hidden ua-o-hero">
+  <div class="container flex flex-col z-2 h-full relative">
+    <nav class="hidden s:flex items-center uppercase text-sm space-x-3 text-stone-50" role="navigation" aria-label="breadcrumbs">
+      <a href="{{ routes.root_url }}" class="hover:text-white">Accueil</a>
+      <span>{% render 'icon-separator' %}</span><a href="{% render 'ua-outil-url', slug: 'outils', view: 'outils' %}" class="hover:text-white">Outils</a>
+      <span>{% render 'icon-separator' %}</span><span aria-current="page">Quel poisson pour mon aquaponie</span>
+    </nav>
+    <div class="richtext pt-18 text-white ua-collection-hero">
+      <h1>Quel poisson pour mon aquaponie</h1>
+      <div class="font-semibold text-2xl pt-6 max-w-2xl ua-collection-hero-content"><p>La truite arc-en-ciel grandit le mieux entre <b>14 et 16 °C</b> et souffre au-delà de 21 °C. Le tilapia demande <b>27 à 30 °C</b> et meurt sous 12 °C. La carpe supporte de 4 à 34 °C.</p></div>
+      
+    </div>
+  </div>
+  <div class="absolute top-0 left-0 w-full h-[400px] bg-stone-100 z-1">
+    <div class="absolute right-0 -top-[140px] w-[670px] text-sea-100">{% render 'icon-monogram' %}</div>
+  </div>
+  <div class="z-1 absolute -bottom-px left-0 w-full text-white transform">{% render 'icon-section-rounded-inverted' %}</div>
+</div>
+<style>
+  .ua-collection-hero h1{margin-bottom:0!important;padding-bottom:0!important}
+  .ua-collection-hero .ua-collection-hero-content{padding-top:.5rem!important;margin-top:0!important}
+  .ua-collection-hero .ua-collection-hero-content p{margin-top:0!important}
+</style>
+<div class="ua-o ua-outil-quel-poisson">
+<section class="ua-stage" aria-label="Calculateur"><div class="container"><div class="stage-card"><div id="tool" class="tool tool-quel-poisson-aquaponie"><p class="k">Exemple calculé</p><p class="mid">Eau de 4 à 22 °C</p><p class="note">Idéales : perche commune, tanche, poisson rouge. Possibles : carpe et koï, qui grandissent lentement sous 25 °C. La truite souffre l'été, le tilapia ne passe pas l'hiver. Votre calcul remplace cet exemple.</p></div></div></div></section>
+<section class="doc"><div class="container"><div class="cols"><div class="method"><h2>Comment c’est <strong>calculé</strong></h2><p>Un poisson d’élevage vit à la température de l’eau. Deux limites comptent : celle qu’il ne supporte pas, et la plage où il grandit vraiment. L’outil compare l’eau la plus froide et la plus chaude de votre année à ces plages.</p>
+<table><thead><tr><th>Espèce</th><th>Plage de vie</th><th>Croissance idéale</th><th>Source</th></tr></thead><tbody>
+<tr><td>Truite arc-en-ciel</td><td>10 à 18 °C</td><td>14 à 16 °C</td><td>FAO 589</td></tr>
+<tr><td>Carpe commune et koï</td><td>4 à 34 °C</td><td>25 à 30 °C</td><td>FAO 589</td></tr>
+<tr><td>Tilapia du Nil</td><td>14 à 36 °C</td><td>27 à 30 °C</td><td>FAO 589</td></tr>
+<tr><td>Perche commune</td><td>non chiffrée</td><td>22 à 24 °C</td><td>Policar et al.</td></tr>
+<tr><td>Tanche</td><td>4 à 24 °C relevés</td><td>non chiffrée</td><td>FishBase</td></tr>
+<tr><td>Poisson rouge</td><td>jusqu’à 41 °C</td><td>préférence 27,9 °C</td><td>Ontario Fishes</td></tr></tbody></table>
+<p>Une espèce est écartée si l’eau dépasse ce qu’elle supporte. Elle est « possible » quand elle survit mais grandit mal une partie de l’année, et « idéale » quand votre eau atteint sa plage de croissance sans la dépasser dangereusement. La truite est une espèce d’eau froide : l’hiver ne la menace pas, la chaleur si.</p>
+<p>Avant d’acheter des poissons, vérifiez les règles de votre région sur les espèces non indigènes. Ne relâchez jamais un poisson d’élevage dans la nature.</p><h3>Connaître l’eau de son installation</h3><p>Un bassin enterré varie moins que l’air : il reste plus frais l’été et ne gèle pas en profondeur l’hiver. Une cuve hors sol suit l’air de près. Une serre réchauffe l’eau au printemps mais peut la surchauffer en été. Relevez la température de l’eau en janvier et en août, ce sont les deux valeurs que l’outil attend.</p>
+<h3>Manger ou regarder</h3><p>Les poissons d’ornement nourrissent les plantes aussi bien que les poissons de consommation. Choisir des poissons rouges ou des koïs, c’est accepter de ne pas les manger, mais gagner en robustesse.</p></div><div class="side"><div class="faq"><h2>Questions <strong>fréquentes</strong></h2><details><summary>Quel est le meilleur poisson pour l’aquaponie en France ?</summary><p>Ça dépend de votre eau. En bassin extérieur non chauffé, la carpe, la tanche, la perche et les poissons rouges passent l’hiver. La truite convient si l’eau reste sous 18 à 21 °C l’été. Le tilapia demande une eau chauffée toute l’année.</p></details><details><summary>Peut-on élever du tilapia en France ?</summary><p>Seulement en eau chauffée. La FAO indique qu’il ne mange plus sous 17 °C et meurt sous 12 °C. Sa croissance idéale se situe entre 27 et 30 °C.</p></details><details><summary>La truite est-elle adaptée à l’aquaponie ?</summary><p>Oui en eau froide : elle grandit le mieux vers 15 °C. Elle demande une eau très oxygénée, plus de 6 mg/L, et peu d’ammoniac. Au-delà de 21 °C, sa croissance chute.</p></details><details><summary>Combien de temps pour qu’un poisson soit mangeable ?</summary><p>D’après la FAO, un tilapia passe de 50 à 500 g en 6 mois environ dans de bonnes conditions, et une carpe atteint 500 à 600 g en 10 mois. Une perche met environ 14 mois pour atteindre 130 à 150 g.</p></details><details><summary>Et les poissons rouges ?</summary><p>Ils supportent presque toutes les eaux et passent l’hiver dehors. On ne les mange pas, mais ils nourrissent très bien un potager aquaponique.</p></details><details><summary>Peut-on mélanger plusieurs espèces ?</summary><p>Oui si elles partagent la même plage de température et que les grands ne mangent pas les petits. La perche, carnassière, ne se mélange pas avec de petits poissons.</p></details><details><summary>Où acheter des poissons pour l’aquaponie ?</summary><p>Chez un pisciculteur ou un éleveur de poissons d’ornement, avec une acclimatation progressive. Univers Aquaponie vend le matériel, pas les poissons vivants.</p></details></div><h3 class="src-t">Sources</h3><ol class="src"><li><a href="https://www.fao.org/3/i4021e/i4021e.pdf" target="_blank" rel="noopener">Small-scale aquaponic food production, tableau 7.1<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">Somerville et al., FAO, 2014</span><span class="what">Plages de température, ammoniac, nitrites et oxygène par espèce ; pH 6 à 7, nitrates 5 à 150 mg/L en aquaponie.</span></li><li><a href="https://www.fao.org/3/i4021e/i4021e.pdf" target="_blank" rel="noopener">Small-scale aquaponic food production, section 7.4<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">Somerville et al., FAO, 2014</span><span class="what">Tilapia, carpe, truite : températures et croissance.</span></li><li><a href="https://orbi.uliege.be/bitstream/2268/192146/1/Chap16.pdf" target="_blank" rel="noopener">Culture Methods of Eurasian Perch During Ongrowing<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">Policar, Samarin, Mélard, Springer, 2015</span><span class="what">Températures et densités d’élevage de la perche.</span></li><li><a href="https://fishbase.se/summary/Tinca-tinca" target="_blank" rel="noopener">Tinca tinca, Tench<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">FishBase</span><span class="what">Milieu tempéré, de 4 à 24 °C.</span></li><li><a href="https://www.ontariofishes.ca/fish_detail.php?FID=32" target="_blank" rel="noopener">Goldfish, Carassius auratus<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a> <span class="by">Ontario Freshwater Fishes Life History Database</span><span class="what">Température préférée 27,9 °C, tolère jusqu’à 41 °C.</span></li></ol><p class="credits">Photos Wikimedia Commons : truite, Eric Engbretson, USFWS (domaine public) ; perche, Jebulon (CC0) ; tanche, Karelj (domaine public) ; carpe, Mike Pennington (CC BY-SA 2.0) ; tilapia, Bernard Dupont (CC BY-SA 2.0) ; koï, Bernard Spragg (CC0) ; poisson rouge, mattbuck (CC BY-SA 3.0).</p></div></div></div></section>
+</div>
+<div class="text-sea-25 -mb-px mt-12 s:mt-24">{% render 'icon-section-rounded' %}</div>
+<div class="overflow-hidden bg-sea-25">
+  <div class="px-6 m:px-10 pt-8 pb-12 s:pt-12 s:pb-16">
+    <div class="flex justify-between items-center pb-10 s:pb-12"><div><h2 class="type-h3">Produits en lien</h2></div></div>
+    {%- assign ua_rel = 'kit-daquaponie-enterre,aliment-truite-aquaponie,kit-daquaponie-naps,kit-daquaponie-la-geraldine,kit-aquaponique-autonome-myfarm,pack-test-eau-aquaponie-analyses-essentielles-nh4-no2-ph-kh,pompe-air-hailea-aco-80-3600-lh,aliment-all-seasons' | split: ',' -%}
+    {%- capture ua_cards -%}{%- for ua_h in ua_rel -%}{%- assign ua_p = all_products[ua_h] -%}{%- if ua_p != blank and ua_p.available -%}<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;">{% render 'card-product', card_product: ua_p, show_quick_add: true %}</div>{%- endif -%}{%- endfor -%}{%- endcapture -%}
+    {% render 'slider', content: ua_cards %}
+  </div>
+</div>
+<div class="overflow-hidden bg-sea-25">
+  <div class="px-6 m:px-10 pt-2 pb-12 s:pt-4 s:pb-16">
+    <div class="flex justify-between items-center pb-10 s:pb-12"><div><h2 class="type-h3">Outils en lien</h2></div></div>
+    {%- capture ua_tools -%}<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;"><div class="ua-o" style="height:100%"><a class="tcard" href="{% render 'ua-outil-url', slug: 'calculateur-aquaponie', view: 'outil-aquaponie' %}" data-u="Aquaponie"><span class="tv"><img src="{{ 'ua-vignette-aquaponie.jpg' | asset_url }}" alt="" loading="lazy" width="640" height="400"></span><span class="tb"><span class="tt">Dimensionner l’aquaponie</span><span class="td">Poissons, plantes, bassin, filtre et pompe, d’après la FAO.</span></span><span class="tf"><span class="uni">Aquaponie</span><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></div></div><div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;"><div class="ua-o" style="height:100%"><a class="tcard" href="{% render 'ua-outil-url', slug: 'diagnostic-analyse-eau', view: 'outil-eau' %}" data-u="Aquaponie"><span class="tv"><img src="{{ 'ua-vignette-eau.jpg' | asset_url }}" alt="" loading="lazy" width="640" height="400"></span><span class="tb"><span class="tt">Analyse d’eau</span><span class="td">Ammoniac toxique, CO2, oxygène, et ce qu’il faut faire.</span></span><span class="tf"><span class="uni">Aquaponie</span><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></div></div><div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain: content;"><div class="ua-o" style="height:100%"><a class="tcard" href="{% render 'ua-outil-url', slug: 'nourrir-poissons-bassin', view: 'outil-ration' %}" data-u="Bassin"><span class="tv"><img src="{{ 'ua-vignette-ration.jpg' | asset_url }}" alt="" loading="lazy" width="640" height="400"></span><span class="tb"><span class="tt">Ration selon la température</span><span class="td">Quoi donner, combien et à quel rythme, de 5 à 30 °C.</span></span><span class="tf"><span class="uni">Bassin</span><span class="go"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></div></div>{%- endcapture -%}
+    {% render 'slider', content: ua_tools, active_breakpoints: 'xxs xs' %}
+  </div>
+</div>
+<section id="ua-outil-art-quel-poisson">
+  <div class="overflow-hidden bg-sea-25">
+    <div class="px-6 m:px-10 pt-2 pb-12 s:pt-4 s:pb-16">
+      <div class="flex justify-between items-center pb-4"><div><h2 class="type-h3">{{ 'ua.articles.heading_html' | t }}</h2></div></div>
+      {%- capture ua_arts -%}{%- assign ua_a = articles['news/quels-poissons-elever-en-aquaponie'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/salmoponie-elever-des-truites-en-aquaponie-cest-possible'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/elever-perche-aquaponie-guide-temperature-tri-croissance'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/elever-tilapia-aquaponie-guide-complet'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/poisson-rouge-aquaponie-guide-elevage-debutant'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}
+{%- assign ua_a = articles['news/carpe-koi-en-aquaponie-guide-complet-pour-reussir'] -%}{%- if ua_a != blank -%}
+<div data-component="SliderItem" class="shrink-0 w-7/12 xs:w-1/2 s:w-1/3 m:w-1/4 px-2 s:px-6" style="contain:content;">
+  <article class="relative group ua-art-card rounded-2xl overflow-hidden h-full flex flex-col">
+    <div class="relative ua-art-media">{%- if ua_a.image -%}<img src="{{ ua_a.image | image_url: width: 600 }}" alt="{{ ua_a.title | escape }}" loading="lazy" width="440" height="330" class="ua-art-img">{%- else -%}<div class="absolute inset-0 bg-sea-25"></div>{%- endif -%}</div>
+    <div class="flex flex-col flex-1 p-4 s:p-6">
+      <h3 class="type-h6 mb-2"><a href="{{ ua_a.url }}" class="before:absolute before:inset-0 before:block"><span class="ua-art-title">{{ ua_a.title | escape }}</span></a></h3>
+      {%- if ua_a.excerpt != blank -%}<div class="ua-art-exc"><p>{{ ua_a.excerpt | strip_html | truncatewords: 40, '' }}</p></div>{%- endif -%}
+      <div class="pt-4" style="margin-top:auto"><span class="relative inline-block font-bold text-sm">{{ 'ua.articles.read_more' | t }}<span class="ua-art-rule"></span></span></div>
+    </div>
+  </article>
+</div>{%- endif -%}{%- endcapture -%}
+      {% render 'slider', content: ua_arts %}
+    </div>
+  </div>
+</section>
+<style>
+#ua-outil-art-quel-poisson .ua-art-card{background:var(--aqua-white,#fff);height:100%}
+#ua-outil-art-quel-poisson .ua-art-media{aspect-ratio:4/3;overflow:hidden;background:var(--aqua-cream,#DEF1F0)}
+#ua-outil-art-quel-poisson .ua-art-img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1);transition:transform 1.2s var(--ua-ease-out,ease)}
+#ua-outil-art-quel-poisson .ua-art-card:hover .ua-art-img{transform:scale(1.05)}
+#ua-outil-art-quel-poisson .ua-art-title{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:break-word}
+#ua-outil-art-quel-poisson .ua-art-exc{color:var(--aqua-text-soft,#4A5464);font-size:.875rem;line-height:1.5}
+#ua-outil-art-quel-poisson .ua-art-exc p{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;margin:0}
+#ua-outil-art-quel-poisson .ua-art-rule{position:absolute;bottom:0;left:0;width:100%;height:1px;background:currentColor;transform-origin:right;transition:transform .3s var(--ua-ease-out,ease)}
+#ua-outil-art-quel-poisson .ua-art-card:hover .ua-art-rule{transform:scaleX(0);transform-origin:left}
+</style>
+{{ 'ua-outils.css' | asset_url | stylesheet_tag }}
+<script>window.UA_ROOT={{ routes.root_url | json }};window.UA_LINKS={"outils":"{% render 'ua-outil-url', slug: 'outils', view: 'outils' %}","calculateur-bache-bassin":"{% render 'ua-outil-url', slug: 'calculateur-bache-bassin', view: 'outil-bache' %}","calculateur-pompe-bassin":"{% render 'ua-outil-url', slug: 'calculateur-pompe-bassin', view: 'outil-pompe' %}","combien-de-poissons-bassin":"{% render 'ua-outil-url', slug: 'combien-de-poissons-bassin', view: 'outil-poissons' %}","nourrir-poissons-bassin":"{% render 'ua-outil-url', slug: 'nourrir-poissons-bassin', view: 'outil-ration' %}","diagnostic-analyse-eau":"{% render 'ua-outil-url', slug: 'diagnostic-analyse-eau', view: 'outil-eau' %}","quel-poisson-aquaponie":"{% render 'ua-outil-url', slug: 'quel-poisson-aquaponie', view: 'outil-quel-poisson' %}","calculateur-aquaponie":"{% render 'ua-outil-url', slug: 'calculateur-aquaponie', view: 'outil-aquaponie' %}","carences-plantes":"{% render 'ua-outil-url', slug: 'carences-plantes', view: 'outil-carences' %}","calendrier-semis":"{% render 'ua-outil-url', slug: 'calendrier-semis', view: 'outil-semis' %}"};window.UA_IMG={"poisson-carpe.jpg":"{{ 'ua-poisson-carpe.jpg' | asset_url }}","poisson-ide.jpg":"{{ 'ua-poisson-ide.jpg' | asset_url }}","poisson-koi.jpg":"{{ 'ua-poisson-koi.jpg' | asset_url }}","poisson-omble.jpg":"{{ 'ua-poisson-omble.jpg' | asset_url }}","poisson-perche.jpg":"{{ 'ua-poisson-perche.jpg' | asset_url }}","poisson-rouge.jpg":"{{ 'ua-poisson-rouge.jpg' | asset_url }}","poisson-shubunkin.jpg":"{{ 'ua-poisson-shubunkin.jpg' | asset_url }}","poisson-sterlet.jpg":"{{ 'ua-poisson-sterlet.jpg' | asset_url }}","poisson-tanche.jpg":"{{ 'ua-poisson-tanche.jpg' | asset_url }}","poisson-tilapia.jpg":"{{ 'ua-poisson-tilapia.jpg' | asset_url }}","poisson-truite.jpg":"{{ 'ua-poisson-truite.jpg' | asset_url }}"};</script>
+<script src="{{ 'ua-outil-data-quel-poisson.js' | asset_url }}" defer></script>
+<script src="{{ 'ua-outils-calc.js' | asset_url }}" defer></script>
+<script src="{{ 'ua-outils-core.js' | asset_url }}" defer></script>
+<script src="{{ 'ua-outil-quel-poisson.js' | asset_url }}" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Quel poisson choisir","alternateName":"Quel poisson pour mon aquaponie","description":"Indiquez la température de votre eau en hiver et en été : l'outil montre les poissons d'aquaponie qui la supportent, ceux qui y grandissent bien, et pourquoi, d'après la FAO.","url":"https://www.univers-aquaponie.com/pages/quel-poisson-aquaponie","applicationCategory":"Aide au choix","operatingSystem":"Tous","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"inLanguage":"fr","featureList":["Espèces compatibles avec votre eau","Plages de température sourcées","Vitesse de croissance","Exigences en oxygène"],"dateModified":"2026-11-09","publisher":{"@type":"Organization","name":"Univers Aquaponie","url":"https://www.univers-aquaponie.com"},"citation":[{"@type":"CreativeWork","name":"Small-scale aquaponic food production, tableau 7.1","author":"Somerville et al., FAO, 2014","url":"https://www.fao.org/3/i4021e/i4021e.pdf"},{"@type":"CreativeWork","name":"Small-scale aquaponic food production, section 7.4","author":"Somerville et al., FAO, 2014","url":"https://www.fao.org/3/i4021e/i4021e.pdf"},{"@type":"CreativeWork","name":"Culture Methods of Eurasian Perch During Ongrowing","author":"Policar, Samarin, Mélard, Springer, 2015","url":"https://orbi.uliege.be/bitstream/2268/192146/1/Chap16.pdf"},{"@type":"CreativeWork","name":"Tinca tinca, Tench","author":"FishBase","url":"https://fishbase.se/summary/Tinca-tinca"},{"@type":"CreativeWork","name":"Goldfish, Carassius auratus","author":"Ontario Freshwater Fishes Life History Database","url":"https://www.ontariofishes.ca/fish_detail.php?FID=32"}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.univers-aquaponie.com/"},{"@type":"ListItem","position":2,"name":"Outils","item":"https://www.univers-aquaponie.com/pages/outils"},{"@type":"ListItem","position":3,"name":"Quel poisson pour mon aquaponie","item":"https://www.univers-aquaponie.com/pages/quel-poisson-aquaponie"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quel est le meilleur poisson pour l'aquaponie en France ?","acceptedAnswer":{"@type":"Answer","text":"Ça dépend de votre eau. En bassin extérieur non chauffé, la carpe, la tanche, la perche et les poissons rouges passent l'hiver. La truite convient si l'eau reste sous 18 à 21 °C l'été. Le tilapia demande une eau chauffée toute l'année."}},{"@type":"Question","name":"Peut-on élever du tilapia en France ?","acceptedAnswer":{"@type":"Answer","text":"Seulement en eau chauffée. La FAO indique qu'il ne mange plus sous 17 °C et meurt sous 12 °C. Sa croissance idéale se situe entre 27 et 30 °C."}},{"@type":"Question","name":"La truite est-elle adaptée à l'aquaponie ?","acceptedAnswer":{"@type":"Answer","text":"Oui en eau froide : elle grandit le mieux vers 15 °C. Elle demande une eau très oxygénée, plus de 6 mg/L, et peu d'ammoniac. Au-delà de 21 °C, sa croissance chute."}},{"@type":"Question","name":"Combien de temps pour qu'un poisson soit mangeable ?","acceptedAnswer":{"@type":"Answer","text":"D'après la FAO, un tilapia passe de 50 à 500 g en 6 mois environ dans de bonnes conditions, et une carpe atteint 500 à 600 g en 10 mois. Une perche met environ 14 mois pour atteindre 130 à 150 g."}},{"@type":"Question","name":"Et les poissons rouges ?","acceptedAnswer":{"@type":"Answer","text":"Ils supportent presque toutes les eaux et passent l'hiver dehors. On ne les mange pas, mais ils nourrissent très bien un potager aquaponique."}},{"@type":"Question","name":"Peut-on mélanger plusieurs espèces ?","acceptedAnswer":{"@type":"Answer","text":"Oui si elles partagent la même plage de température et que les grands ne mangent pas les petits. La perche, carnassière, ne se mélange pas avec de petits poissons."}},{"@type":"Question","name":"Où acheter des poissons pour l'aquaponie ?","acceptedAnswer":{"@type":"Answer","text":"Chez un pisciculteur ou un éleveur de poissons d'ornement, avec une acclimatation progressive. Univers Aquaponie vend le matériel, pas les poissons vivants."}}]}]}</script>
+{% schema %}
+{"name":"UA, outil Quel poisson choisir","tag":"section","class":"ua-outil","settings":[]}
+{% endschema %}

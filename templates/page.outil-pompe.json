@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "ua-outil-pompe",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

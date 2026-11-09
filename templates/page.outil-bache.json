@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "ua-outil-bache",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

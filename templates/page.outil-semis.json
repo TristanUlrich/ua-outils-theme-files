@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "ua-outil-semis",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

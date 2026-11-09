@@ -1,0 +1,7 @@
+{%- comment -%}
+  Adresse d'un outil de la rubrique Outils. Page publiée : son adresse. Sinon, aperçu par ?view= sur la page
+  a-propos, pour tester dans une copie du thème avant de publier quoi que ce soit.
+  Paramètres : slug (poignée de la page), view (suffixe du gabarit).
+{%- endcomment -%}
+{%- assign ua_pg = pages[slug] -%}
+{%- if ua_pg != blank and ua_pg.published_at != blank -%}{{ ua_pg.url }}{%- else -%}{%- assign ua_r = routes.root_url -%}{%- if ua_r == '/' -%}{%- assign ua_r = '' -%}{%- endif -%}{{ ua_r }}/pages/a-propos?view={{ view }}{%- endif -%}

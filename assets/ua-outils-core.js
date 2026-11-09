@@ -334,7 +334,7 @@
     var mq = W.matchMedia('(max-width: 979px)'), srcOut = false, toolIn = false;
     function sync() { $('.pk-v', bar).textContent = src.textContent; if (k) $('.pk-k', bar).textContent = k.textContent; }
     function show() { bar.classList.toggle('in', mq.matches && srcOut && toolIn); }
-    new IntersectionObserver(function (e) { srcOut = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; show(); }).observe(src);
+    new IntersectionObserver(function (e) { srcOut = !e[0].isIntersecting && e[0].boundingClientRect.top < (IN_SHOP ? 100 : 0); show(); }, { rootMargin: IN_SHOP ? '-100px 0px 0px 0px' : '0px' }).observe(src);
     new IntersectionObserver(function (e) { toolIn = e[0].isIntersecting; show(); }, { rootMargin: '0px 0px -30% 0px' }).observe(tg);
     new MutationObserver(sync).observe(src, { childList: true, characterData: true, subtree: true });
     bar.addEventListener('click', function () { (tg.closest('.ua-stage') || tg).scrollIntoView({ behavior: 'smooth', block: 'start' }); });

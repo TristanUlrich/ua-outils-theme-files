@@ -364,7 +364,7 @@
     if (!lac || !lac.add) return;
     e.preventDefault();
     a.setAttribute('aria-busy', 'true');
-    Promise.resolve(lac.add({ items: [{ id: id, quantity: 1 }] })).then(function () { toast('Ajouté au panier'); }).catch(function () { location.href = cartHref(id); }).then(function () { a.removeAttribute('aria-busy'); });
+    Promise.resolve(lac.add({ items: [{ id: id, quantity: 1 }] })).then(function () { var open = D.querySelector('[data-option-target="Cart"][data-option-effect="target.open()"]'); if (open) open.click(); else toast('Ajouté au panier'); }).catch(function () { location.href = cartHref(id); }).then(function () { a.removeAttribute('aria-busy'); });
   });
   function onResize(fn) { window.addEventListener('ua:redraw', function () { fn(); }); var w = window.innerWidth; window.addEventListener('resize', debounce(function () { if (window.innerWidth !== w) { w = window.innerWidth; fn(); } }, 120)); }
 

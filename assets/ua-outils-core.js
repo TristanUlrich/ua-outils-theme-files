@@ -8,6 +8,7 @@
   var SHOP = IN_SHOP ? '' : 'https://www.univers-aquaponie.com';
   function url(slug, bare) { var b = (W.UA_LINKS && W.UA_LINKS[slug]) || slug + '.html'; return bare ? b : b + (b.indexOf('?') > -1 ? '&' : '?'); }
   function img(name) { return (W.UA_IMG && W.UA_IMG[name]) || 'img/' + name; }
+  function link(p) { return IN_SHOP ? ROOT + p : SHOP + '/' + p; }
   function cartHref(id) { return IN_SHOP ? ROOT + 'cart/add?id=' + id + '&quantity=1' : SHOP + '/cart/' + id + ':1'; }
   /* Calques posés sur la page (toast, rappel du résultat) : dans .ua-o pour garder les styles de la rubrique */
   var LAYER = null;
@@ -364,7 +365,19 @@
     if (!lac || !lac.add) return;
     e.preventDefault();
     a.setAttribute('aria-busy', 'true');
-    Promise.resolve(lac.add({ items: [{ id: id, quantity: 1 }] })).then(function () { var open = D.querySelector('[data-option-target="Cart"][data-option-effect="target.open()"]'); if (open) open.click(); else toast('Ajouté au panier'); }).catch(function () { location.href = cartHref(id); }).then(function () { a.removeAttribute('aria-busy'); });
+    /* Le panneau s'ouvre une fois le panier relu, pour montrer l'article ajouté */
+    var done = false;
+    function after(ok) {
+      if (done) return; done = true; a.removeAttribute('aria-busy');
+      if (!ok) { location.href = cartHref(id); return; }
+      var open = D.querySelector('[data-option-target="Cart"][data-option-effect="target.open()"]');
+      if (open) open.click(); else toast('Ajouté au panier');
+    }
+    try {
+      var r = lac.add({ items: [{ id: id, quantity: 1 }] }, { lastCallback: function (s) { after(!(s && s.responseData && s.responseData.ok === false)); } });
+      if (r && r.then) r.then(function () { after(true); }, function () { after(false); });
+      setTimeout(function () { after(true); }, 5000);
+    } catch (err) { after(false); }
   });
   function onResize(fn) { window.addEventListener('ua:redraw', function () { fn(); }); var w = window.innerWidth; window.addEventListener('resize', debounce(function () { if (window.innerWidth !== w) { w = window.innerWidth; fn(); } }, 120)); }
 
@@ -372,5 +385,5 @@
 
   W.UA = { $: $, $$: $$, h: h, svg: svg, nf: nf, nfa: nfa, eur: eur, parse: parse, clamp: clamp, round: round, State: State, Store: Store,
     tween: tween, numField: numField, seg: seg, tiles: tiles, glue: glue, range: range, product: product, prodRow: prodRow, prodList: prodList, trace: trace,
-    actions: actions, toast: toast, prodCard: prodCard, debounce: debounce, layout: layout, onResize: onResize, DATA: DATA, SHOP: SHOP, url: url, img: img, ready: ready, cartHref: cartHref, layer: layer };
+    actions: actions, toast: toast, prodCard: prodCard, debounce: debounce, layout: layout, onResize: onResize, DATA: DATA, SHOP: SHOP, url: url, img: img, ready: ready, cartHref: cartHref, link: link, layer: layer };
 })(window);

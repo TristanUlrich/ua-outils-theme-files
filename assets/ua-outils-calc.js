@@ -197,9 +197,9 @@
     { id: 'truite', nom: 'Truite arc-en-ciel', lat: 'Oncorhynchus mykiss', opt: [14, 16], chaud: 18, mortel: 21, froidOk: true, usage: 'manger',
       croissance: 'Eau froide et très oxygénée. Au-delà de 21 °C, sa croissance chute nettement.', o2: 6, tan: 0.5, no2: 0.3, src: 'FAO 589, tableau 7.1' },
     { id: 'perche', nom: 'Perche commune', lat: 'Perca fluviatilis', opt: [22, 24], chaud: 27, mortel: null, froidOk: true, usage: 'manger',
-      croissance: '130 à 150 g en 14 mois environ à 22-24 °C.', o2: 5, src: 'Policar et al., 2015' },
+      croissance: '130 à 150 g en 14 mois environ à 22-24 °C.', o2: 5, src: 'Policar et al., 2015 ; Ekström et al., 2016, cité par Pichaud et al., 2019' },
     { id: 'tanche', nom: 'Tanche', lat: 'Tinca tinca', opt: null, plage: [4, 24], chaud: 24, mortel: null, froidOk: true, usage: 'manger',
-      croissance: 'Poisson de fond paisible, relevé entre 4 et 24 °C dans la nature.', src: 'FishBase, réf. 13614' },
+      croissance: 'Poisson de fond paisible, relevé entre 4 et 24 °C dans la nature. Ses jeunes poussent bien à 24 °C, au mieux vers 28 °C.', src: 'Wolnicki et al., 2004 ; FishBase, réf. 13614' },
     { id: 'carpe', nom: 'Carpe commune', lat: 'Cyprinus carpio', opt: [25, 30], chaud: 30, mortel: 34, froidOk: true, froid: 4, usage: 'manger',
       croissance: '500 à 600 g en 10 mois environ. Sous 12 °C, elle ne grandit presque plus.', o2: 4, tan: 1, no2: 1, src: 'FAO 589, tableau 7.1' },
     { id: 'tilapia', nom: 'Tilapia du Nil', lat: 'Oreochromis niloticus', opt: [27, 30], chaud: 30, mortel: 36, froidOk: false, froid: 12, jeune: 17, usage: 'manger',
@@ -207,8 +207,39 @@
     { id: 'koi', nom: 'Carpe koï', lat: 'Cyprinus rubrofuscus', opt: [25, 30], chaud: 30, mortel: 34, froidOk: true, froid: 4, usage: 'ornement',
       croissance: 'Variété d’ornement de la carpe : mêmes plages que la carpe commune.', src: 'FAO 589, tableau 7.1 (carpe commune)' },
     { id: 'rouge', nom: 'Poisson rouge', lat: 'Carassius auratus', opt: null, pref: 27.9, chaud: 34, mortel: 41, froidOk: true, usage: 'ornement',
-      croissance: 'Préfère une eau de 27,9 °C et supporte jusqu’à 41 °C. Passe l’hiver en bassin extérieur.', src: 'Ontario Freshwater Fishes' }
+      croissance: 'Préfère une eau de 27,9 °C et supporte jusqu’à 41 °C. Passe l’hiver en bassin extérieur.', src: 'Ontario Freshwater Fishes ; repères d’alimentation des fabricants (pleine saison de 21 à 30 °C)' },
+    { id: 'omble', nom: 'Omble de fontaine', lat: 'Salvelinus fontinalis', opt: [11, 16], chaud: 22, mortel: 23.4, froidOk: true, usage: 'manger',
+      croissance: 'Le « saumon de fontaine » des pisciculteurs. Pousse le mieux de 11 à 16 °C, de moins en moins au-delà, et plus du tout à 23,4 °C.', o2: 6, src: 'Chadwick et McCormick, 2017 ; Goble et al., 2018' },
+    { id: 'sterlet', nom: 'Sterlet', lat: 'Acipenser ruthenus', opt: [19, 22.5], chaud: 25, mortel: 32.8, froidOk: true, froid: 4, usage: 'ornement',
+      croissance: 'Petit esturgeon de bassin, qui vit et mange au fond. Laissés libres, les jeunes sterlets choisissent une eau de 19 ou 22,5 °C selon leur élevage. Il vit de 4 à 25 °C.', o2: 6, src: 'LfL Bayern ; Vestnik ASTU' }
   ];
+  /* L'année en paliers : jusqu'à cette température (incluse), tel état.
+     top : pousse bien ; lent : vit, pousse peu ; souffre : stress, croissance qui baisse ou ne mange plus ; danger : croissance arrêtée ou mortalité.
+     Seuils : ceux des sources de chaque espèce (voir la méthode de la page). */
+  var PALIERS = {
+    truite: [[14, 'lent'], [16, 'top'], [18, 'lent'], [21, 'souffre'], [99, 'danger']],
+    omble: [[11, 'lent'], [16, 'top'], [22, 'lent'], [23.4, 'souffre'], [99, 'danger']],
+    perche: [[22, 'lent'], [24, 'top'], [27, 'lent'], [29.8, 'souffre'], [99, 'danger']],
+    sterlet: [[3.99, 'souffre'], [19, 'lent'], [22.5, 'top'], [25, 'lent'], [32.8, 'souffre'], [99, 'danger']],
+    tanche: [[24, 'lent'], [28, 'top'], [99, 'lent']],
+    carpe: [[25, 'lent'], [30, 'top'], [34, 'souffre'], [99, 'danger']],
+    koi: [[25, 'lent'], [30, 'top'], [34, 'souffre'], [99, 'danger']],
+    tilapia: [[11.99, 'danger'], [17, 'souffre'], [27, 'lent'], [30, 'top'], [36, 'souffre'], [99, 'danger']],
+    rouge: [[21, 'lent'], [30, 'top'], [34, 'lent'], [41, 'souffre'], [99, 'danger']]
+  };
+  function etat(id, T) { var p = PALIERS[id]; for (var k = 0; k < p.length; k++) if (T <= p[k][0]) return p[k][1]; return p[p.length - 1][1]; }
+  /* Température de l'eau mois par mois : une courbe douce entre la plus froide (fin janvier) et la plus chaude (fin juillet).
+     Arrondie au degré : c'est le chiffre affiché, et celui que l'on compare aux seuils. */
+  function moisEau(tmin, tmax) {
+    var mid = (tmin + tmax) / 2, amp = (tmax - tmin) / 2, out = [];
+    for (var m = 0; m < 12; m++) out.push(Math.round(mid - amp * Math.cos(2 * Math.PI * (m - 0.5) / 12)));
+    return out;
+  }
+  function annee(e, tmin, tmax) {
+    var T = moisEau(tmin, tmax), mois = T.map(function (t) { return etat(e.id, t); }), n = { top: 0, lent: 0, souffre: 0, danger: 0 };
+    mois.forEach(function (s) { n[s]++; });
+    return { T: T, mois: mois, n: n, score: n.top * 3 + n.lent - n.souffre * 2 - n.danger * 8 };
+  }
   function evalEspece(e, tmin, tmax) {
     var raisons = [];
     if (e.mortel != null && tmax > e.mortel) return { st: 'bad', txt: 'Trop chaud l’été (au-delà de ' + e.mortel + ' °C)' };
@@ -252,7 +283,7 @@
   var API = { clamp: clamp, interp: interp, PROFILS: PROFILS, bache: bache, dimsVariante: dimsVariante, choisirBache: choisirBache,
     FAO_POMPE: FAO_POMPE, debitVise: debitVise, hazen: hazen, reseau: reseau, hPompe: hPompe, pointFonctionnement: pointFonctionnement, energie: energie, pompe: pompe,
     POP: POP, litres: litres, peuplement: peuplement, choisirUV: choisirUV, ZONES: ZONES, zone: zone, nourrir: nourrir,
-    nh3: nh3, co2: co2, o2sat: o2sat, SEUILS: SEUILS, eau: eau, ESPECES: ESPECES, evalEspece: evalEspece,
+    nh3: nh3, co2: co2, o2sat: o2sat, SEUILS: SEUILS, eau: eau, ESPECES: ESPECES, evalEspece: evalEspece, PALIERS: PALIERS, etat: etat, moisEau: moisEau, annee: annee,
     FRR: FRR, PLANTS: PLANTS, aquaponie: aquaponie, CARENCES: CARENCES, carence: carence, decaleMois: decaleMois };
   if (typeof module !== 'undefined' && module.exports) module.exports = API; else root.UACalc = API;
 })(typeof window !== 'undefined' ? window : this);

@@ -829,8 +829,8 @@
 }
 .ua-o .sp-card{display:grid;gap:16px;margin:0 -10px 12px;padding:6px 10px 18px;background:var(--mist-2);border-radius:0 0 14px 14px}
 @media (min-width:700px){.ua-o .sp-card{grid-template-columns:minmax(160px,220px) 1fr;align-items:start}}
-@media (max-width:699px){.ua-o .sp-ph img{aspect-ratio:16/9}}
 .ua-o .sp-ph img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:12px}
+@media (max-width:699px){.ua-o .sp-ph img{aspect-ratio:16/9}}
 .ua-o .sp-tx h3{font-size:22px;font-weight:800;line-height:1.15;margin:0 0 6px}
 .ua-o .sp-tx h3 em{font-weight:400;font-size:15px;color:var(--ink-soft)}
 .ua-o .sp-tx p{margin:0 0 10px}
